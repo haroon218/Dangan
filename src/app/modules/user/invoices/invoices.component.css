@@ -1,0 +1,81 @@
+.invoice-container {
+    padding: 20px;
+    overflow: hidden;
+
+    background-color: #fff;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .logo img {
+    max-width: 150px;
+    height: auto;
+  }
+  .logo, .invoice-info {
+    flex: 1; /* Makes both divs take up equal width */
+    padding: 10px; /* Adds padding inside the divs for better spacing */
+  }
+  
+  .invoice-details {
+    margin-top: 20px;
+  }
+  
+  .client-info {
+    margin-bottom: 20px;
+  }
+  
+  .invoice-summary {
+    margin-top: 20px;
+    text-align: right;
+  }
+  ::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius:7px;
+    height: fit-content !important;
+}
+::ng-deep.mat-mdc-table .mat-mdc-header-cell {
+  background: inherit;
+  height: 48px !important;
+
+  font-size: 14px;
+  font-weight: 700 !important;
+  font-family: 'popins',sans-serif;
+}
+/* loader */
+.setoverlays {
+  position: fixed;
+  top: 32%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #00b2e2;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

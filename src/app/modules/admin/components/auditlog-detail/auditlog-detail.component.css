@@ -1,0 +1,119 @@
+.profile-content{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+::ng-deep .profile-content label{
+    color: #767574 !important;
+}
+::ng-deep #setTable.mat-mdc-table {
+  --mat-table-row-item-outline-width: 1px;
+  table-layout: fixed !important;
+  background-color: var(--mat-table-background-color);
+}
+
+::ng-deep .profile-content.mdc-text-field--filled .mdc-line-ripple::before {
+    border-bottom:1px solid rgb(221, 217, 217) !important;
+}
+::ng-deep .profile-content.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+    border-bottom:2px solid rgb(39, 38, 38);
+  }
+  .profile-header {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 74px;
+    justify-content: space-between;
+    background-color:  #00b2e2;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  ::ng-deep #dialogPadding.mdc-dialog .mdc-dialog__content {
+    padding: 0px !important;
+}
+  /* Mobile screens */
+@media only screen and (max-width: 767px) {
+    .card-title,
+    .role-set,
+    .head-id,
+    .name-head,
+    .app-id {
+      font-size: 12px; /* Adjust the font size as needed for mobile */
+    }
+    .profile-text {
+        color:white;
+        font-size: 14px;
+        margin-left: 16px;
+        font-family: "popins", sans-serif;
+      }
+    .profile-content{
+       
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    .profile-dialog-forms-data{
+        flex-direction: column;
+        display: flex;
+        margin: 0px;
+        padding-left: 20px;
+    }
+    ::ng-deep .profile-dialog-forms-data .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+        cursor: inherit;
+        font-size: 12px;
+    }
+   
+   
+    
+}
+/* loader */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: rgba(0, 0, 0, 0.5); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #00b2e2;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .profile-text {
+    color:white;
+    font-size: 20px;
+    margin-left: 16px;
+    font-family: "popins", sans-serif;
+  }
+  ::ng-deep::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+  }
+  
+  ::ng-deep::-webkit-scrollbar-thumb {
+    background-color: #00baf2;
+    border-radius: 5px;
+  }
+  .state-head{
+    padding-left: 20px;
+  }
+  .state-id{
+    padding-left: 65px;
+  }

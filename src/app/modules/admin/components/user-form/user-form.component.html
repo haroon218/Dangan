@@ -1,0 +1,99 @@
+<mat-dialog-content class="profile-content">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+    <div class="profile-header">
+      <div class="profile-text">User</div>
+      <div class="close-icon" style="text-align: right;padding-right:10px;color:white">
+        <mat-icon class="material-icons" mat-dialog-close>clear</mat-icon>
+      </div>
+    </div>
+    <div class="profile-dialog-forms-data">
+        <div class="p-dialog-cont-1">
+          <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>First name</mat-label>
+              <input class="value" matInput placeholder=""  [formControl]="NameFormControl" [(ngModel)]="user.firstName" />
+              <mat-error *ngIf="NameFormControl .hasError('required')">
+                  Username is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+          </form>
+          <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input class="value" matInput placeholder=""  [formControl]="EmailFormControl"  [(ngModel)]="user.email" />
+              <mat-error *ngIf="EmailFormControl .hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+                
+            </mat-form-field>
+          </form>
+           
+         
+         <form id="employee-sso-form" id="p-form-data">
+            <mat-form-field id="input-t">
+              <mat-label>Address</mat-label>
+              <input class="value" matInput />
+            </mat-form-field>
+          </form>
+        
+          <form id="Dform" id="p-form-data">
+            <mat-form-field id="input-text">
+              <mat-label>Gender</mat-label>
+              <mat-select class="option" >
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Others">Others</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form> 
+        </div>
+
+        <div class="p-dialog-cont-2">
+        <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>Last Name</mat-label>
+              <input class="value" matInput placeholder=""[(ngModel)]="user.lastName"/>
+            </mat-form-field>
+          </form>
+          <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>Mobile</mat-label>
+              <input class="value" matInput placeholder=""    />
+            </mat-form-field>
+          </form>
+          
+          <form id="employee-sso-form" id="p-form-data">
+              <mat-form-field id="input-t">
+                <mat-label>Samot Platform Margin</mat-label>
+                <input class="value" matInput [(ngModel)]="user.samotPlatformMargin"/>
+              </mat-form-field>
+            </form>
+          <form id="employee-sso-form" id="p-form-data">
+            <mat-form-field id="input-t">
+              <mat-label>Credit Limit</mat-label>
+              <input class="value" matInput [(ngModel)]="user.creditLimit"  />
+            </mat-form-field>
+          </form>
+          <!-- <form id="employee-sso-form">
+              <mat-form-field id="input-t">
+                <mat-label>Postal Code</mat-label>
+                <input class="value" matInput [(ngModel)]="employee.postalCode" />
+              </mat-form-field>
+            </form> -->
+         
+        </div> 
+        
+      </div>
+      
+    
+      
+   
+   
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="onCancelClick()"  mat-dialog-close color="primary">Cancel</button>
+    <button mat-stroked-button (click)="updateUser()"  cdkFocusInitial color="primary">Update</button>
+   
+  </mat-dialog-actions>

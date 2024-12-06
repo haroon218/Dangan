@@ -1,0 +1,88 @@
+<!-- <mat-dialog-content id="dialogPadding"> -->
+    <div class="overlay" *ngIf="loading">
+        <div class="loader"></div>
+    </div>
+      <div class="profile-header">
+        <div class="profile-text"> AuditLogs</div>
+          <div class="close-icon" style="text-align: right;padding-right:10px;color:white">
+            <mat-icon class="material-icons" mat-dialog-close>clear</mat-icon>
+        </div>
+      </div>
+      <div class="card-body">
+          <div class="table-responsive" style="height: 485px;">
+            <div class="mat-elevation-z8">
+              <table
+                class="table table-hover"
+                mat-table
+                [dataSource]="dataSource"
+                matSort
+                (matSortChange)="announceSortChange($event)"
+              >
+             
+               
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef class="head-id">
+                      Activity
+                  </th>
+                  <td mat-cell *matCellDef="let element" class="app-id">
+                    {{ element.activity}}
+                  </td>
+                </ng-container>
+               
+                 <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef class="head-id">
+                      Activityby
+                  </th>
+                  <td mat-cell *matCellDef="let element" class="app-id">
+                    {{ element.activityBy}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef class="head-id">
+                      ActivityOn
+                  </th>
+                  <td mat-cell *matCellDef="let element" class="app-id">
+                    {{ element.activityOn}}
+                  
+
+                  </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="status" style="text-align: center;">
+                  <th mat-header-cell *matHeaderCellDef class="head-id">
+                    TimeSheet State
+                  </th>
+                  <td mat-cell *matCellDef="let element" class="app-id" style="cursor: pointer;">
+                 <mat-icon class="material-icons" >visibility</mat-icon>
+  
+                </td>
+                  
+                </ng-container>
+  
+              
+  
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  class="mat-row"
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                  
+                ></tr>
+              </table>
+             
+              <mat-paginator
+                [pageSizeOptions]="[10, 50, 100]"
+                showFirstLastButtons
+                aria-label="Select page of periodic elements"
+              >
+              </mat-paginator>
+            </div>
+          </div>
+  
+        </div>
+       
+    
+        
+        
+    <!-- </mat-dialog-content> -->
+    

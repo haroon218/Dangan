@@ -1,0 +1,103 @@
+
+<div class="main-content">
+    <div class="overlay" *ngIf="loading">
+      <div class="loader"></div>
+    </div>
+    <div class="container-fluid" id="inputSet">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class=""> Profile</h4>
+                        <!-- <p class="card-category">Complete your profile</p> -->
+                    </div>
+                    <div class="card-body">
+                      
+                          
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                  <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="First Name" type="text" [(ngModel)]="admin.first_name">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                  <mat-label>Last Name</mat-label>
+                                    <input matInput placeholder="Last Name" type="text" [(ngModel)]="admin.last_name">
+                                  </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                <mat-label>Email</mat-label>
+                                  <input matInput placeholder="email" readonly="" type="text"[(ngModel)]="admin.email">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>DateOfBirth</mat-label>
+                                  <input matInput [matDatepicker]="startDatepicker" [(ngModel)]="admin.date_of_birth" style="font-size: 14px;">
+                                  <mat-hint>MM/DD/YYYY</mat-hint>
+                                  <mat-datepicker-toggle matIconSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+                                  <mat-datepicker #startDatepicker></mat-datepicker>
+                                </mat-form-field>
+                              </div>
+                              
+                          </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Country</mat-label>
+                                  <input matInput placeholder="Country" type="text" [(ngModel)]="admin.country">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>City</mat-label>
+  
+                                  <input matInput placeholder="City" type="text" [(ngModel)]="admin.city">
+                                </mat-form-field>
+                              </div>
+                          </div>
+                          <div class="row"> 
+                            <div class="col-md-6">
+                              <mat-form-field class="example-full-width">
+                              <mat-label>SamotPlatformMargin</mat-label>
+                                <input matInput placeholder="" type="text"  [(ngModel)]="admin.samotPlatformMargin">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                              <mat-form-field class="example-full-width">
+                                <mat-label>Credit</mat-label>
+                                  <input matInput placeholder="Credit Limit" type="text"  [(ngModel)]="admin.creditLimit">
+                                </mat-form-field>
+                          </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <mat-form-field class="example-full-width">
+                                  <mat-label>Address</mat-label>
+                                    <input matInput placeholder="Address" type="text"  [(ngModel)]="admin.address" >
+                                  </mat-form-field>
+                                </div>
+                              </div>
+  
+                                                    
+      
+                            <button mat-raised-button type="submit"(click)=" updateUser()" class="btn btn-info pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                       
+                  
+              
+  
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+  </div>
+  

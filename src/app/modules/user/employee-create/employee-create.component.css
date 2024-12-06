@@ -1,0 +1,555 @@
+.profile-content{
+    /* width: 921px;
+    height: 73vh; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.profile-header {
+  align-items: center;
+  display: flex;
+  /* width: 100%; */
+  height: 64px;
+  justify-content: space-between;
+  background-color:  #00b2e2;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+::ng-deep.mdc-dialog .mdc-dialog__content {
+  padding: 0px;
+}
+::ng-deep.mat-mdc-dialog-content{
+    max-height: 100vh !important;
+}
+.profile-text {
+  color:white;
+  font-size: 20px;
+  margin-left: 16px;
+  font-family: "popins", sans-serif;
+}
+.close-icon {
+  width: 17px;
+  height: 18px;
+  cursor: pointer;
+  margin-right: 16px;
+}
+.p-dialog-cont-1{
+    width: 312px;
+    
+}
+.p-dialog-cont-2{
+    width: 312px;
+    margin-left: 28px;
+}
+.p-dialog-cont-3{
+    width: 312px;
+    margin-left: 28px;
+}
+.profile-dialog-forms-data{
+    display: flex;
+    width: 841px;
+    height: 57vh;
+    margin: 24px;
+    padding-left: 20px; 
+}
+
+#country-selection{
+    
+    margin-left: 40px;
+    height: 40px;
+    width: 387px;
+    box-shadow: 1px 2px 1px 1px rgb(234, 233, 232);
+}
+.tog-text{
+    font-size: 17px;
+    letter-spacing: 0.1px;
+    font-family: 'popins',sans-serif;
+    font-weight: 200;
+    margin-left: 6px;
+    
+    margin-top: 13px;
+    color: #3a3a3a;
+}
+.password-toogle{
+    display: flex;
+}
+.pass-tog{
+    
+    margin-left: 35px;
+    margin-top: 13px;
+    
+    
+    
+   
+}
+#new-password{
+    margin-left: 40px;
+}
+.change-password{
+    display: flex;
+    
+    width: 852px;
+    margin-left: 24px;
+    
+}
+
+::ng-deep #country-selection .mat-mdc-form-field-icon-suffix, [dir=rtl] .mat-mdc-form-field-icon-prefix {
+    padding: 0px 0 0 83px;
+    position: relative;
+    margin-bottom: 14px;
+}
+::ng-deep #country-selection .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+
+    background-color: white;
+}
+
+::ng-deep #country-selection .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+    padding-top: 8px !important;
+    padding-bottom: 0px;
+}
+::ng-deep #country-selection .mat-mdc-form-field-subscript-wrapper {
+
+height: 0;
+
+}
+
+
+::ng-deep .p-dialog-cont-1 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+    width: 387px;
+    padding: 0;
+    margin-top: 10px;
+}
+::ng-deep .p-dialog-cont-3 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+    width: 387px;
+    padding: 0;
+    margin-top: 10px;
+}
+::ng-deep .p-dialog-cont-2 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+    width: 387px;
+    padding: 0;
+    margin-top: 10px;
+}
+::ng-deep  .p-dialog-cont-1 .mat-mdc-form-field-subscript-wrapper {
+   box-sizing: border-box;
+   width: 100%;
+   position: relative;
+   height: 0 !important;
+}
+::ng-deep  .p-dialog-cont-3 .mat-mdc-form-field-subscript-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    height: 0 !important;
+ }
+::ng-deep  .p-dialog-cont-2 .mat-mdc-form-field-subscript-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    height: 0 !important;
+ }
+ ::ng-deep #date .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+    width: 387px;
+    padding: 0;
+     margin-top: 0px; 
+}
+::ng-deep #p-form-data  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+    padding-top: 19px !important;
+    
+}
+
+
+.value{
+   
+   font-size: 12px;
+}
+#date-input::placeholder{
+    font-size: 15px;
+}
+
+::ng-deep .profile-content label{
+    color: #767574 !important;
+}
+::ng-deep #application-sso-form .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+   letter-spacing: 0px !important;
+   }
+   ::ng-deep #application-sso-form .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+       padding-top: 18px !important;
+    padding-bottom: 0 !important;
+   }
+ 
+   
+   ::ng-deep #application-sso-form .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+       height: 42px !important;
+       background:none !important;
+       width: 377px;
+       padding-left: 0px !important;
+       font-family: Roboto, "Helvetica Neue", sans-serif;
+       letter-spacing: 0.1px !important;
+   }
+   ::ng-deep #application-sso-form .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+       height: 42px !important;
+       background-color: white;
+       width: 387px;
+       
+   }
+   ::ng-deep #application-sso-form .mdc-text-field--filled:not(.mdc-text-field--disabled):hover{
+    background-color:transparent !important;
+   }
+   ::ng-deep #application-sso-form .mdc-text-field--filled.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+       border-bottom: 1px solid rgb(215, 211, 211) !important;
+   }
+   ::ng-deep .profile-content .mdc-text-field--filled .mdc-line-ripple::before {
+    border-bottom:1px solid rgb(221, 217, 217) !important;
+}
+::ng-deep .profile-content .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+    border-bottom:2px solid rgb(39, 38, 38);
+  }
+   ::ng-deep #application-sso-form .mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+       
+       padding-left: 0 !important;
+   }
+   ::ng-deep #application-sso-form .mdc-text-field--filled .mdc-line-ripple::before {
+       border-bottom:1px solid rgb(221, 217, 217) !important;
+   }
+   ::ng-deep #new-password .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: 0px !important;
+    }
+    ::ng-deep #new-password .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+        padding-top: 18px !important;
+     padding-bottom: 0 !important;
+    }
+  
+    
+    ::ng-deep #new-password .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        height: 42px !important;
+        background:none !important;
+        width: 377px;
+        padding-left: 0px !important;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        letter-spacing: 0.1px !important;
+    }
+    ::ng-deep #new-password .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        height: 42px !important;
+        background-color: white;
+        width: 387px;
+        
+    }
+    ::ng-deep #new-password .mdc-text-field--filled:not(.mdc-text-field--disabled):hover{
+     background-color:transparent !important;
+    }
+    ::ng-deep #new-password .mdc-text-field--filled.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+        border-bottom: 1px solid rgb(215, 211, 211) !important;
+    }
+   
+    ::ng-deep #new-password .mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+        
+        padding-left: 0 !important;
+    }
+    ::ng-deep #new-password .mdc-text-field--filled .mdc-line-ripple::before {
+        border-bottom:1px solid rgb(221, 217, 217) !important;
+    }
+  
+
+
+::ng-deep #p-form-data .mdc-text-field--filled .mdc-line-ripple::before {
+   border-bottom:1px solid rgb(221, 217, 217) !important;
+}
+::ng-deep #p-form-data .mdc-text-field--filled.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label, .mdc-text-field--filled.mdc-text-field--invalid[_ngcontent-ng-c3833206353]:not(.mdc-text-field--disabled) .mdc-floating-label--float-above[_ngcontent-ng-c3833206353] {
+   color: #574f4ffa;
+}
+::ng-deep #p-form-data .mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+   
+   padding-left: 0 !important;
+}
+
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+   height: 52px !important;
+   background:none !important;
+   width: 250px;
+   padding-left: 0px !important;
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+   letter-spacing: 0.1px !important;
+}
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+   height: 47px !important;
+   background-color: white;
+   width: 250px !important;
+   
+   margin: 0;
+}
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled):hover{
+background-color:transparent !important;
+}
+::ng-deep #p-form-data .mdc-text-field--filled.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+   border-bottom: 1px solid rgb(215, 211, 211) !important;
+}
+#application-sso-form{
+   
+   margin-top: 4px;
+}
+::ng-deep #Dform .mat-mdc-select-value-text {
+    color: #574f4ffa !important;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    padding-bottom: 30px;
+    letter-spacing: 0px;
+}
+::ng-deep #Dform .mat-mdc-select-arrow svg {
+    fill: #767574 !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+::ng-deep #Dform .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: 0px !important;
+    }
+    ::ng-deep #Dform .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+        padding-top: 18px !important;
+        padding-bottom: 6px !important;
+    }
+    
+    ::ng-deep #Dform .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        height: 42px !important;
+        background:none !important;
+        width: 377px;
+        padding-left: 0px !important;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        letter-spacing: 0.1px !important;
+    }
+    ::ng-deep #Dform .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        height: 42px !important;
+        background-color: white;
+        width: 377px;
+        
+    }
+    ::ng-deep #Dform .mdc-text-field--filled:not(.mdc-text-field--disabled):hover{
+     background-color:transparent !important;
+    }
+    ::ng-deep #Dform .mdc-text-field--filled.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+        border-bottom: 1px solid rgb(215, 211, 211) !important;
+    }
+    ::ng-deep #Dform .mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+        
+        padding-left: 0 !important;
+    }
+    ::ng-deep #input-text .mdc-text-field--filled .mdc-line-ripple::before {
+        border-bottom:1px solid rgb(221, 217, 217) !important;
+    }
+    
+    .option{
+        font-family: 'popins',sans-serif;
+        font-weight: 100 !important;
+    }
+    
+    ::ng-deep #Dform .mdc-text-field--filled .mdc-line-ripple::before {
+        border-bottom:1px solid rgb(221, 217, 217) !important;
+    }
+    #Dform{
+        height: 58px;
+    }
+::ng-deep #Dform .mat-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
+    transform: translateY(0px) !important;
+    color: bisque;
+}
+.cancel{
+   
+   margin-right: 14px;
+   color: #3a3a3a;
+   font-size: 17px;
+   font-family: 'popins',sans-serif;
+   letter-spacing: 0.3px;
+   background-color: transparent;
+   border: none;
+}
+.save{
+   
+   margin-right: 24px;
+   color: #3a3a3a;
+   font-size: 17px;
+   background-color: transparent;
+   font-family: 'popins',sans-serif;
+   letter-spacing: 0.3px;
+   border: none;
+}
+::ng-deep .action .mat-mdc-button .mdc-button__label{
+    font-size: 13px;
+    font-family: 'popins',sans-serif;
+    letter-spacing: 0.1px;
+}
+::ng-deep #p-form-data  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+    padding-top: 19px !important;
+    background: white;
+}
+::ng-deep .profile-dialog-forms-data .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+    cursor: inherit;
+    font-size: 14px;
+}
+/* ::ng-deep #setgrow .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
+    flex-grow: 0;
+} */
+::ng-deep.job-title.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+    cursor: pointer;
+    background: white;
+    padding: 0px;
+}
+::ng-deep.Rate.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    height: 50px !important;
+    background: white;
+
+}
+
+.flex-containers {
+    display: flex;
+    justify-content: space-between; 
+    padding-left: 45px;
+    width: 80%;
+    /* or any other value depending on your layout preferences */
+  }
+  
+  .rate,
+  .hours,
+  .delbtn {
+    flex: 1;
+  }
+  .rate{
+    /* margin-top: 10px; */
+    padding-left: 45px;
+    
+  }
+
+  ::ng-deep #widset .mat-mdc-select-arrow svg {
+    fill: currentColor;
+    position: absolute;
+    top: 138%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  ::ng-deep #widset .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    padding: 0px;
+    font-size: 14px;
+    /* height: 39px; */
+   background-color: white;
+}
+/* ::ng-deep #rateset .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    padding: 0px;
+    font-size: 14px;
+    height: 37px;
+   background-color: white;
+} */
+::ng-deep #widset .mat-mdc-form-field-focus-overlay {
+    background-color: transparent;
+}
+::ng-deep #widset .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+    cursor: inherit;
+    font-size: 14px;
+}
+::ng-deep #widset .mat-mdc-select-value-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+/* Mobile screens */
+@media only screen and (max-width: 767px) {
+    .card-title,
+    .role-set,
+    .head-id,
+    .name-head,
+    .app-id {
+      font-size: 12px; /* Adjust the font size as needed for mobile */
+    }
+    .profile-text {
+        color:white;
+        font-size: 14px;
+        margin-left: 16px;
+        font-family: "popins", sans-serif;
+      }
+    .profile-content{
+        /* width: 921px;
+        height: 73vh; */
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    .profile-dialog-forms-data{
+        flex-direction: column;
+        display: flex;
+        /* width: 602px;
+        height: 57vh; */
+      margin: 0px;
+        padding-left: 20px;
+    }
+    ::ng-deep .profile-dialog-forms-data .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+        cursor: inherit;
+        font-size: 12px;
+    }
+    .p-dialog-cont-2{
+        width: 312px;
+        margin-left: 0px;
+    }
+    .p-dialog-cont-3{
+        width: 312px;
+        margin-left: 0px;
+    }
+   
+    
+}
+
+/* ::ng-deep #setDate .mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
+    transition: opacity 150ms 0ms cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+} */
+/* loader */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #00b2e2;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  /* SnackBar */
+::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    border-radius: 5px !important ;
+    background-color: white!important;
+  } 
+  ::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__label {
+    color: green!important ;
+  }
+  ::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: black!important ;
+  }
+  ::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    border-radius: 5px !important ;
+    background-color: white;
+  }
+  ::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__label {
+    color: red!important ;
+  }
+  ::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: black!important ;
+  }
+  

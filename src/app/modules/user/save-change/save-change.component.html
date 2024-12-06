@@ -1,0 +1,29 @@
+
+<mat-dialog-content class="mat-typography">
+    <div class="overlay" *ngIf="loading">
+        <div class="loader"></div>
+      </div>
+
+    <h2 style="color: black;">Want to save your changes?</h2>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button
+      mat-stroked-button
+      (click)="cancelDialog()"
+      mat-dialog-close
+      color="primary"
+     
+    >
+      Discard
+    </button>
+    <button
+      mat-stroked-button
+      (click)="save()"
+      color="primary"
+
+      cdkFocusInitial
+    >
+     Save
+    </button>
+  </mat-dialog-actions>
+

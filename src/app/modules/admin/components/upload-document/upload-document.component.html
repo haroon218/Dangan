@@ -1,0 +1,16 @@
+<div style="margin: 20px;">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+   <h3 style="color: black;text-align: center;">Choose Document</h3>
+   
+   <div style="margin-top: 20px;">
+    <div class="col-sm-12">
+        <input type="file" formControlName="orderFile" class="form-control inputFile" accept=""
+                      (change)="onFileChange($event);">
+        <!-- <span *ngIf="f.orderFile.errors?.required && submitted">File is Required</span> -->
+      </div>
+</div>
+</div>
+<div style="padding-left: 35%;padding-top: 35px;">
+<button mat-button (click)="uploadFileBytes()" class="action-button shadow animate blue">Proceed</button></div>

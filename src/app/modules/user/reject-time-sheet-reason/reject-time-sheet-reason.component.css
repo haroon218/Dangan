@@ -1,0 +1,42 @@
+::ng-deep #setTextArea .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: var(--mdc-filled-text-field-container-color);
+    width: 396px;
+}
+::ng-deep #setTextArea .mat-mdc-form-field-subscript-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    height: 0px;
+}
+/* loader */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #00b2e2;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }

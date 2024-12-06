@@ -1,0 +1,223 @@
+.create {
+   
+    display: flex;
+    justify-content: end;
+}
+.create img{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+
+}
+.tool-bar{
+    align-items: center !important;
+    position:absolute;
+    background-color: rgb(0,178,226);
+    z-index: 6;
+    width:100%;
+    top: 0;
+    left: 0;
+    height: 75px;
+    /* border-radius: 7px; */
+    display: none;
+    
+  
+  }
+  ::ng-deep.mat-mdc-button .mdc-button__label, .mat-mdc-unelevated-button .mdc-button__label, .mat-mdc-raised-button .mdc-button__label, .mat-mdc-outlined-button .mdc-button__label {
+    z-index: 0 !important;
+}
+  .tool-bar-block{
+    
+    display: flex;
+    justify-content: space-between;
+  
+  }
+  .tool-bar-options{
+    display:flex ;
+  justify-content: center;
+  align-items: center;
+    margin-top: 15px;
+    margin-right: 6px;
+  }
+  #tool-bar-edit img {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    margin-right: 35px;
+    display: block;
+  }
+  .tool-bar-delete img{
+    width: 20px;
+    height: 20px;
+  cursor: pointer;
+  
+  }
+  .tool-bar-num{
+    color:#231f20;
+    margin-left: 11px;
+    width: 30px;
+    padding-top: 15px;
+  }
+  table .table-hover{
+    background-color: white;
+    font-family: Roboto,Helvetica,Arial, Helvetica, sans-serif;
+  }
+ /* Adjusting the height of table header */
+::ng-deep .card-body .table-responsive table th.mat-header-cell {
+    height: 48px;
+    line-height: 48px; /* Ensures vertical centering of content */
+    padding: 0;
+}
+::ng-deep#roles-drop .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  cursor: pointer;
+  width: 203px !important;
+  height: 51px !important;
+  border-radius: 7px !important;
+}
+::ng-deep #roles-drop .mat-mdc-form-field-subscript-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  height: 0;
+}
+/* Adjusting the height of table data cells */
+::ng-deep .card-body .table-responsive table td.mat-cell {
+    height: 48px;
+    line-height: 48px; /* Ensures vertical centering of content */
+    padding:30px;
+}
+
+::ng-deep.mat-mdc-table .mat-mdc-header-cell {
+  background: inherit;
+  height: 48px !important;
+
+  font-size: 14px;
+  font-weight: 700 !important;
+  font-family: 'popins',sans-serif;
+}
+.animate
+{
+	transition: all 0.1s;
+	-webkit-transition: all 0.1s;
+}
+
+.action-button
+{
+	position: relative;
+	padding: 3px 9px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+	border-radius: 10px;
+	font-family: 'Poppins', sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;	
+}
+
+.blue
+{
+	background-color: #3498DB;
+	border-bottom: 5px solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+    border-style: none;
+}
+.red
+{
+	background-color: #E74C3C;
+	border-bottom: 5px solid #BD3E31;
+	text-shadow: 0px -2px #BD3E31;
+    border: none;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .approved {
+    color: green;
+  }
+  
+  .rejected {
+    color: red;
+  }
+  
+  .unknown {
+    color: black; /* or any other default color for unknown status */
+  }
+  @media screen and (max-width: 768px) { /* Adjust the max-width to target smaller screens if needed */
+    #setTextAlign {
+      text-align: center;
+    }
+  }
+
+  /* loader */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #00b2e2;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+/* Mobile screens */
+@media only screen and (max-width: 767px) {
+  .card-title,
+  .role-set,
+  .head-id,
+  .name-head,
+  .app-id {
+    font-size: 12px; /* Adjust the font size as needed for mobile */
+  }
+}
+/* Set CheckBox Color */
+::ng-deep .main-content .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+  border-color: #00b2e2 !important;
+  background-color: #00b2e2 !important;
+}
+::ng-deep .main-content .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background{
+  border-color: #00b2e2 !important;
+  background-color: #00b2e2 !important;
+}
+/* SnackBar */
+::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: 5px !important ;
+  background-color: white!important;
+} 
+::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  color: green!important ;
+}
+::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+  color: black!important ;
+}
+::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: 5px !important ;
+  background-color: white;
+}
+::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  color: red!important ;
+}
+::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+  color: black!important ;
+}

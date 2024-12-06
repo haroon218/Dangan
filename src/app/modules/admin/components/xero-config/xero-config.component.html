@@ -1,0 +1,60 @@
+
+
+<div class="main-content">
+    <div class="overlay" *ngIf="loading">
+      <div class="loader"></div>
+    </div>
+    <div class="container-fluid" id="inputSet">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class=""> XeroConfigration</h4>
+                        <!-- <p class="card-category">Complete your profile</p> -->
+                    </div>
+                    <div class="card-body">
+                      
+                          
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                  <mat-label>Client Id</mat-label>
+                                    <input matInput type="text" [(ngModel)]="client.clientId">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                  <mat-label>Client Secret</mat-label>
+                                    <input matInput type="text" [(ngModel)]="client.clientSecret">
+                                  </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                <mat-label>Xero TenantId</mat-label>
+                                  <input matInput  type="text"[(ngModel)]="client.tenantId">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>RedirectURL</mat-label>
+                                  <input matInput  type="text" [(ngModel)]="client.redirectUrl">
+                                </mat-form-field>
+                              </div>
+                              
+                          </div>
+                        
+                <button mat-raised-button type="submit"(click)="Add()" class="btn btn-info pull-right">Save</button>
+                <div class="clearfix"></div>
+                       
+                
+  
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+  </div>
+  

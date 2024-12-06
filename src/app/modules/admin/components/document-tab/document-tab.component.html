@@ -1,0 +1,191 @@
+<div class="main-content">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+  <div class="container-fluid" style="margin-top: -30px">
+    <div class="row" id="setinput">
+      <div class="col-md-12">
+        <div class="create" style="height: 37px">
+          <button
+          (click)="AddBulk()"
+            mat-button
+            class="action-button shadow animate blue"
+            style="border-radius: 3px"
+          >
+            <img
+              style="height: 16px; width: 16px"
+              src="/assets/img/faces/addIcon.png"
+            />
+            Add Document
+          </button>
+
+        </div>
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <div style="display: inline-block">
+              <h4 class="card-title mt-0">Documents</h4>
+            </div>
+            <div style="float: right; padding: 0px">
+              <div class="searchdoc" id="searchsetdoc">
+                <form class="example-form" id="setwidthdoc">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      type="text"
+                      placeholder=""
+                      aria-label="Number"
+                      matInput
+                      [formControl]="myControl"
+                      [(ngModel)]="organizationName" 
+                      [matAutocomplete]="auto"
+                      (focus)="getOrg()"
+                      (keydown.enter)="getOrg()"
+                    />
+                    <button
+                      matSuffix
+                      mat-icon-button
+                      aria-label="Clear"
+                      (click)="clearInput()"                    >
+                      <mat-icon class="material-icons" style="color: black;">clear</mat-icon>
+                    </button>
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredOrganization | async" [value]="option.Name" >
+                        {{ option.Name }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </form>
+              </div> 
+              
+              
+              
+              <!-- <form id="roles-drop">
+                <mat-form-field id="rolesdown">
+                  <mat-label class="role-set">Organization</mat-label>
+                  <mat-select disableRipple 
+                  (selectionChange)="getEmployees()"
+                  [(ngModel)]="dataService.organization">
+                    <mat-option
+                      *ngFor="let option of Organizations"
+                      [value]="option.OrganizationId"
+                    >
+                      {{ option.Name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </form> -->
+            </div>
+
+            <mat-toolbar class="tool-bar" id="toolBar">
+              <div class="tool-bar-block">
+                <div class="tool-bar-num">
+                  {{ selection.selected.length }}
+                </div>
+                <div class="tool-bar-options">
+                  
+                  <div class="tool-bar-delete" id="toolDelete">
+                    <img src="/assets/img/faces/delete.svg" alt="" (click)="delDocuments()"/>
+                  </div>
+                </div>
+              </div>
+            </mat-toolbar>
+            <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <div class="mat-elevation-z8">
+                <table
+                  class="table table-hover"
+                  mat-table
+                  [dataSource]="dataSource"
+                >
+                  <!-- Checkbox Column -->
+                  <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <mat-checkbox
+                        (change)="$event ? toggleAllRows() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="
+                          selection.hasValue() && !isAllSelected()
+                        "
+                        [aria-label]="checkboxLabel()"
+                        [class.white-background]="!isAllSelected()"
+                        (change)="openToolbar()"
+                      >
+                      </mat-checkbox>
+                    </th>
+
+                    <td mat-cell *matCellDef="let row">
+                      <mat-checkbox
+                        (click)="$event.stopPropagation()"
+                        (change)="handleCheckboxChange(row)"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)"
+                        (change)="
+                          $event ? selection.toggle(row) : null; openToolbar()
+                        "
+                      >
+                      </mat-checkbox>
+                    </td>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="firstName">
+                    <th class="name-head" mat-header-cell *matHeaderCellDef>
+                      Name
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.name }}
+                    </td>
+                  </ng-container>
+
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <ng-container *ngIf="!isSmallScreen">Type</ng-container>
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <ng-container *ngIf="!isSmallScreen">
+                        {{ element.type }}
+                      </ng-container>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="create">
+                    <th mat-header-cell *matHeaderCellDef class="head-id">
+                      Created On
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="app-id">
+                      {{ element.createdOn }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="download">
+                    <th mat-header-cell *matHeaderCellDef class="head-id">
+                      Download 
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="app-id">
+                        <mat-icon class="material-icons" (click)="downloadDocuments(element.documentId)" style="cursor: pointer;">save_alt</mat-icon>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    class="mat-row"
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                    [class.selected-row]="selection.isSelected(row)"
+                  ></tr>
+                </table>
+                <mat-paginator
+                  [pageSizeOptions]="[10, 20, 50]"
+                  showFirstLastButtons
+                  aria-label="Select page of Employee"
+                >
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

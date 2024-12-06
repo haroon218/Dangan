@@ -1,0 +1,21 @@
+<div class="logo">
+    <a href="" class="simple-text" style="height: 50px;">
+        <div class="logo-img"> 
+            <img src="/assets/img/faces/logo.png"  style="width: 223px;top: 6px;"/>
+        </div>
+    </a>
+</div>
+<div class="sidebar-wrapper">
+  <div *ngIf="isMobileMenu()">
+    <ul class="nav navbar-nav nav-mobile-menu">
+      </ul>
+  </div>
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

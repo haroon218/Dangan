@@ -1,0 +1,156 @@
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled):focus{
+  background-color:white !important;
+}
+::ng-deep #p-form-data  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+padding-top: 19px !important;
+background: white;
+}
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+/* background-color: var(--mdc-filled-text-field-container-color); */
+background: white;
+padding: 0px;
+
+}
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled) ::after {
+/* background-color: var(--mdc-filled-text-field-container-color); */
+background: white;
+
+}
+::placeholder{
+padding-left:1px;
+font-size: 10px;
+}
+input {
+overflow: visible;
+border: none;
+border-bottom: 1px solid rgb(169, 169, 169);
+height: 35px;
+width: 70px;
+}
+::ng-deep #p-form-data .mat-mdc-form-field-subscript-wrapper {
+  height: 0;
+  width: 100%;
+}
+::ng-deep.drop.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+cursor: pointer;
+width: 132px !important;
+height: 51px !important;
+border-radius: 7px !important;
+}
+::ng-deep.mat-mdc-form-field-subscript-wrapper {
+box-sizing: border-box;
+width: 100%;
+position: relative;
+height: 0;
+}
+.time{
+width: 100%;
+height: 65vh;
+overflow-x: hidden;
+padding: 0;
+
+}
+.drop{
+float: right;
+margin-right: 23px;
+margin-top: 5px;
+background-color: white;
+}
+.name-head {
+font-size: 12px;
+background-color: rgb(169, 169, 169);
+ text-align: center;
+}
+
+
+/* Optional: Add border to data cells */
+.name-cont {
+text-align: center;
+
+font-size: 13px;
+padding-left: 2px;
+width: 50px !important;
+
+}
+.profile-header {
+align-items: center;
+display: flex;
+width: 100%;
+height: 64px;
+justify-content: space-between;
+background-color:  #00b2e2;
+margin: 0 !important;
+padding: 0 !important;
+}
+::ng-deep.time.mdc-dialog .mdc-dialog__content {
+padding:0px;
+}
+::ng-deep.mat-mdc-dialog-content{
+  max-height: 100vh !important;
+}
+.profile-text {
+color:white;
+font-size: 20px;
+margin-left: 16px;
+font-family: "popins", sans-serif;
+}
+.close-icon {
+width: 17px;
+height: 18px;
+cursor: pointer;
+margin-right: 16px;
+}
+::-webkit-scrollbar {
+width: 6px;
+height: 6px;
+background-color: white;
+border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: #00baf2;
+border-radius: 20px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+-webkit-appearance: none; 
+margin: 0; 
+}
+table {
+width: 100%;
+}
+
+tr.mat-mdc-footer-row td {
+font-weight: bold;
+}
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+/* background: rgba(0, 0, 0, 0.5); */
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 999;
+}
+
+.loader {
+border: 5px solid #f3f3f3;
+border-top: 5px solid #00b2e2;
+border-radius: 50%;
+width: 50px;
+height: 50px;
+animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+0% {
+  transform: rotate(0deg);
+}
+
+100% {
+  transform: rotate(360deg);
+}
+}

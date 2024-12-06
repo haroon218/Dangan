@@ -1,0 +1,227 @@
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled):focus{
+    background-color:white !important;
+}
+::ng-deep #p-form-data  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+  padding-top: 19px !important;
+  background: white;
+  }
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  /* background-color: var(--mdc-filled-text-field-container-color); */
+  background: white;
+  padding: 0px;
+
+}
+::ng-deep #p-form-data .mdc-text-field--filled:not(.mdc-text-field--disabled) ::after {
+  /* background-color: var(--mdc-filled-text-field-container-color); */
+  background: white;
+
+}
+::placeholder{
+  padding-left: 10px;
+}
+input {
+  overflow: visible;
+  border: none;
+  border-bottom: 1px solid rgb(169, 169, 169);
+  height: 35px;
+  width: 100px;
+}
+::ng-deep #p-form-data .mat-mdc-form-field-subscript-wrapper {
+    height: 0;
+    width: 100%;
+}
+::ng-deep.drop.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  cursor: pointer;
+  width: 132px !important;
+  height: 51px !important;
+  border-radius: 0px !important;
+}
+::ng-deep.mat-mdc-form-field-subscript-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  height: 0;
+}
+.time{
+  width: 100%;
+  height: 66vh;
+  overflow-x: hidden;
+  padding: 0px;
+}
+ .drop{
+  float: right;
+  margin-right: 23px;
+  margin-top: 5px;
+  background-color: white;
+ }
+
+ .name-head {
+  padding-left: 17px;
+  background-color: rgb(169, 169, 169);
+}
+
+
+/* Optional: Add border to data cells */
+.name-cont {
+  padding-left: 17px;
+
+}
+.profile-header {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  height: 64px;
+  justify-content: space-between;
+  background-color:  #00b2e2;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+::ng-deep.time.mdc-dialog .mdc-dialog__content {
+  padding:0px;
+}
+::ng-deep.mat-mdc-dialog-content{
+    max-height: 100vh !important;
+}
+.profile-text {
+  color:white;
+  font-size: 20px;
+  margin-left: 16px;
+  font-family: "popins", sans-serif;
+}
+.close-icon {
+  /* width: 17px;
+  height: 18px; */
+  cursor: pointer;
+  /* margin-right: 16px; */
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #00baf2;
+  border-radius: 20px;
+}
+.action-button
+{
+	
+        position:sticky;
+        padding: 5px 21px;
+        margin: 0px 10px 10px 0px;
+        float: left;
+        border-radius: 0px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        color: #FFF;
+        text-decoration: none;
+}
+
+.green
+{
+	background-color: #2ca350;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0px -2px #298d2a;
+    border-style: none;
+}
+.red
+{
+	background-color: #E74C3C;
+	border-bottom: 5px solid #BD3E31;
+	text-shadow: 0px -2px #BD3E31;
+    border: none;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .approved {
+    color: green;
+  }
+  
+  .rejected {
+    color: red;
+  }
+  
+  .unknown {
+    color: black; 
+  }
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+
+  dialog-actions-align-end, .mat-mdc-dialog-actions[align=end] {
+    justify-content: flex-end;
+    height: 52px;
+}
+/* SnackBar */
+::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: 5px !important ;
+  background-color: white!important;
+} 
+::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  color: green!important ;
+}
+::ng-deep .success-snackbar.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+  color: black!important ;
+}
+::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: 5px !important ;
+  background-color: white;
+}
+::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  color: red!important ;
+}
+::ng-deep .error-snackbar.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+  color: black!important ;
+}
+/* loader */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0, 0, 0, 0.5); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #00b2e2;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+::ng-deep.mat-datepicker-content .mat-calendar {
+  width: 268px !important;
+  height: 325px !important;
+}
+::ng-deep.drop.mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
+  transition: opacity 150ms 0ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 62px !important;
+}
+::ng-deep.mat-date-range-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-width: calc(50% - 4px);
+  padding-bottom: 8px !important;
+}

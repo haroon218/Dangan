@@ -1,0 +1,118 @@
+<mat-dialog-content class="time">
+    <!-- Table for Employee Details -->
+    <table class="table" mat-table [dataSource]="dataService.detailemployees" multiTemplateDataRows>
+      <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+      <!-- Checkbox Column -->
+      
+      <!-- Checkbox Column -->
+     
+      <ng-container matColumnDef="fname">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>FirstName</th>
+        <td class="name-cont" mat-cell *matCellDef="let element">
+          {{ element.firstName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Lname">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>Surname</th>
+        <td class="name-cont" mat-cell *matCellDef="let element">
+          {{ element.lastName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="toggleButton">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row" class="toggle-cell">
+          <button mat-icon-button (click)="$event.stopPropagation(); toggleExpansion(row)">
+            <mat-icon>{{ isExpanded(row) ? "remove" : "add" }}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <!-- ... (rest of your columns) -->
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions" class="name-head">&nbsp;</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            aria-label="expand row"
+            (click)="expandedElement = expandedElement === element ? null : element; dataService.employeeInTimeSheets = element;"
+          >
+            <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+          </button>
+       
+          
+         
+        </td>
+      </ng-container>
+      <!-- Expandable row -->
+      <ng-container matColumnDef="expandedDetail">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [attr.colspan]="columnsToDisplayWithExpand.length"
+        >
+          <div
+            class="example-element-detail"
+            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+          >
+            <ng-container *ngIf="element == expandedElement">
+              <!-- Only load the component when the element is expanded -->
+              <app-timesheet-detail-rate (click)="handleExpansionClick($event)" [employee]="element"></app-timesheet-detail-rate>
+            </ng-container>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Expenses">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>Expenses</th>
+        <td class="name-cont" mat-cell *matCellDef="let element">
+          <input
+            required="required"
+            type="number"
+            [(ngModel)]="element.expenses" 
+            (ngModelChange)="onInputChanged(element)"
+  [readOnly]="true"
+            pattern="^[0-9]*$"
+          />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="deduction">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>deduction</th>
+        <td class="name-cont" mat-cell *matCellDef="let element">
+          <input
+            required="required"
+            type="number"
+            [(ngModel)]="element.deductions"   
+            [readOnly]="true"
+
+            (ngModelChange)="onInputChanged(element)"
+            pattern="^[0-9]*$"
+          />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="pay">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>Gross Pay</th>
+        <td mat-cell *matCellDef="let element"  class="name-cont" id="p-form-data">
+          {{ element.grossPay }} 
+        </td>
+      </ng-container>
+      <!-- setting Column -->
+      <tr class="name-head" mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand" class="example-element-row">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[4, 5, 8]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+  </mat-dialog-content>
+  <div style="display: flex; flex-direction: column">
+    <div style="float: right; margin-right: 26px" align="end">
+      <!-- Display Subtotal -->
+      <p>Subtotal: {{dataService.subtotal| currency:'EUR':'symbol':'1.2-2' }}</p>
+      <p>Grand Total:{{dataService.subtotal| currency:'EUR':'symbol':'1.2-2' }}</p>
+    </div>
+    <mat-dialog-actions align="end" id="setbtn">
+      <button mat-stroked-button color="primary" mat-dialog-close (click)="cancelDialog()" >
+        Cancel
+      </button>
+     
+    </mat-dialog-actions>
+  </div>
+  

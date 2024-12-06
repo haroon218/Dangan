@@ -1,0 +1,43 @@
+
+::ng-deep .mat-mdc-table .mat-mdc-header-cell {
+  background: inherit;
+  height: 48px !important;
+  font-size: 14px;
+  font-weight: 600 !important;
+  font-family: 'Poppins',sans-serif;
+}
+
+::ng-deep table .table-hover{
+  background-color: white !important;
+  font-family: Roboto,Helvetica,Arial, Helvetica, sans-serif;
+}
+::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+  border-color:#00b2e2 !important ;
+  background-color:#00b2e2 !important;
+}
+::ng-deep .mdc-checkbox__native-control:checked~.mdc-checkbox__background, .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background, .mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background {
+  background-color: #00b2e2;
+  
+}
+::ng-deep::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::ng-deep::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+
+/* Handle */
+::ng-deep::-webkit-scrollbar-thumb {
+  background: red; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::ng-deep::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+

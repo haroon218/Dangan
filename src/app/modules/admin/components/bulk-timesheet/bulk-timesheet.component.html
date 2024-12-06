@@ -1,0 +1,13 @@
+
+<div style="margin: 20px;">
+    <h3 style="color: black;text-align: center;">Choose Excel(.xlsx) File</h3>
+    <div style="margin-top: 20px;">
+        <div class="col-sm-12">
+            <input type="file" formControlName="orderFile" class="form-control inputFile" accept=".xls, .xlsx"
+            (change)="onFileChange($event);">
+            <!-- <span *ngIf="f.orderFile.errors?.required && submitted">File is Required</span> -->
+          </div>
+    </div>
+    </div>
+    <div style="padding-left: 35%;padding-top: 35px;">
+    <button mat-button (click)="addBulkTimesheet()" class="action-button shadow animate blue">Proceed</button></div>

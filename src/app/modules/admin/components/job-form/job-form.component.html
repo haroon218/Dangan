@@ -1,0 +1,55 @@
+<mat-dialog-content class="profile-content">
+    <div class="profile-header">
+      <div class="profile-text">Job Details</div>
+      <div class="close-icon">
+        <img src="/assets/img/whitecross.png" style="
+        cursor: pointer;margin-right:11px;margin-top:-4px;" (click)="cancelDialog()">
+      </div>
+    </div>
+    <div class="profile-dialog-forms-data"> 
+      <div class="p-dialog-cont-1">
+        <form id="p-form-datas">
+          <mat-form-field class="example-full-width">
+            <mat-label>Title</mat-label>
+            <input class="value" matInput placeholder=""  [formControl]="NameFormControl"  [(ngModel)]="employee.title" />
+            <mat-error *ngIf="NameFormControl .hasError('required')">
+                Title is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="NameFormControl .hasError('minlength')">
+                Title should be at least 5 characters long
+              </mat-error>
+              <mat-error *ngIf="NameFormControl .hasError('maxlength')">
+                Title should be no more than 15 characters long
+              </mat-error>
+          </mat-form-field>
+        </form>
+        
+        <form id="p-form-datas">
+          <mat-form-field class="example-full-width">
+            <mat-label>Rate</mat-label>
+            <input class="value" matInput placeholder=""  [formControl]="SalaryFormControl"  [(ngModel)]="employee.rate" />
+            <mat-error *ngIf="SalaryFormControl .hasError('required')">
+              Rate is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="SalaryFormControl.hasError('pattern')">
+                Please enter a valid Rate in number form
+              </mat-error>
+          </mat-form-field>
+        </form>
+      
+      </div>
+      <div class="p-dialog-cont-2">
+        <form id="p-form-datas">
+          <mat-form-field class="example-full-width">
+            <mat-label>Description</mat-label>
+            <input class="value" matInput placeholder=""  type="email"  [(ngModel)]="employee.description" />
+      
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="cancelDialog()" mat-dialog-close color="primary">Cancel</button>
+    <button mat-stroked-button (click)="addEmployee()" cdkFocusInitial style="background-color:#00b2e2;color:white">{{ employee.id ? 'Update'  : 'Create'}}</button>
+  </mat-dialog-actions>

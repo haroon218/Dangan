@@ -1,0 +1,163 @@
+
+  <div class="main-content">
+    <div class="overlay" *ngIf="loading">
+      <div class="loader"></div>
+    </div>
+    <div class="container-fluid">
+      <div class="row" id="setinput">
+        <div class="col-md-12">
+          <div class="create">
+            
+  
+            <img
+              src="/assets/img/faces/add_library_icon.png"
+              (click)="openForm()"
+            />
+          </div>
+          <div class="card card-plain">
+            <div class="card-header card-header-danger">
+              <div style="display: inline-block">
+                <h4 class="card-title mt-0">Jobs Rate</h4>
+              </div>
+              <div style="float: right; padding: 0px">
+                  <form id="roles-drop">
+                      <mat-form-field id="rolesdown">
+                        <mat-label class="role-set">Organization</mat-label>
+                        <mat-select
+                          disableRipple
+                          [(ngModel)]="selectedOption"  (selectionChange) = "getEmployees()"
+                        >
+                          <mat-option
+                            *ngFor="let option of Organizations"
+                            [value]="option.id"
+                          >
+                            {{ option.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </form>
+              </div>
+  
+              <mat-toolbar class="tool-bar" id="toolBar">
+                <div class="tool-bar-block">
+                  <div class="tool-bar-num">
+                    {{ selection.selected.length }}
+                  </div>
+                  <div class="tool-bar-options">
+                    <div
+                      id="tool-bar-edit"
+                      [attr.attribute-you-are-targeting]="true"
+                    >
+                      <img
+                        src="/assets/img/faces/edit.svg" (click)="editEmployee()"
+                      />
+                    </div>
+                    <div class="tool-bar-delete" id="toolDelete">
+                      <img
+                        src="/assets/img/faces/delete.svg"
+                        alt=""(click)="delEmployees()"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </mat-toolbar>
+              <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="mat-elevation-z8">
+                  <table
+                    class="table table-hover"
+                    mat-table
+                    [dataSource]="dataSource"
+                  >
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                      <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox
+                          (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="
+                            selection.hasValue() && !isAllSelected()
+                          "
+                          [aria-label]="checkboxLabel()"
+                          [class.white-background]="!isAllSelected()"
+                          (change)="openToolbar()"
+                        >
+                        </mat-checkbox>
+                      </th>
+  
+                      <td mat-cell *matCellDef="let row">
+                        <mat-checkbox
+                          (click)="$event.stopPropagation()"
+                          (change)="handleCheckboxChange(row)"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)"
+                          (change)="
+                            $event ? selection.toggle(row) : null; openToolbar()
+                          "
+                        >
+                        </mat-checkbox>
+                      </td>
+                    </ng-container>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="JobTitle">
+                      <th
+                        class="head-id"
+                        mat-header-cell
+                        *matHeaderCellDef
+                      >
+                        Job Title
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        {{ element.title }}
+                      </td>
+                    </ng-container>
+  
+                    <!-- Name Column -->
+                  
+                    <ng-container matColumnDef="Rate">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        Rate
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="app-id">
+                        ${{ element.rate }}
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Description">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        <ng-container *ngIf="!isSmallScreen"
+                        >Description</ng-container>
+                        
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="app-id">
+                        <ng-container *ngIf="!isSmallScreen"
+                        >   {{ element.description }}</ng-container>
+                     
+                      </td>
+                    </ng-container>
+  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr
+                      class="mat-row"
+                      mat-row
+                      *matRowDef="let row; columns: displayedColumns"
+                      [class.selected-row]="selection.isSelected(row)"
+                    ></tr>
+                  </table>
+                  <mat-paginator
+                    [pageSizeOptions]="[5, 10, 15]"
+                    showFirstLastButtons
+                    aria-label="Select page of Employee"
+                    [pageSize]="selectedOption"
+                  >
+                  </mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

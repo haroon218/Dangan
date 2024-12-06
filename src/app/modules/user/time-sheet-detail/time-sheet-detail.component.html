@@ -1,0 +1,366 @@
+<div class="profile-header" y>
+  <div class="profile-text">Time Sheet</div>
+  <div class="close-icon">
+    <div class="overlay" *ngIf="loading">
+      <div class="loader"></div>
+    </div>
+    <!-- Timesheet Type Selection Dropdown -->
+
+    <mat-form-field class="drop">
+      <mat-label>Timesheet Type</mat-label>
+      <mat-select
+        [(value)]="
+          this.gettype ? this.gettype : dataService.selectedTimesheetType
+        "
+      >
+        <ng-container *ngFor="let type of timesheetTypes">
+          <mat-option
+            *ngIf="!this.gettype || this.gettype === type.id"
+            [value]="type.id"
+          >
+            {{ type.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      class="drop"
+      *ngIf="
+        (this.gettype ? this.gettype : dataService.selectedTimesheetType) === 2
+      "
+    >
+      <mat-label>Payroll cycle</mat-label>
+      <mat-select
+        [(value)]="this.Cycle ? this.Cycle : dataService.selectedcycle"
+        (selectionChange)="onPayrollCycleChange($event)"
+      >
+        <ng-container *ngFor="let cycle of payrollCycle">
+          <mat-option
+            *ngIf="!this.Cycle || this.Cycle === cycle.id"
+            [value]="cycle.id"
+          >
+            {{ cycle.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      class="drop"
+      *ngIf="
+        (this.gettype ? this.gettype : dataService.selectedTimesheetType) ===
+          2 && (this.Cycle ? this.Cycle : dataService.selectedcycle) === 3
+      "
+    >
+      <mat-label>Month and Year</mat-label>
+      <input matInput [matDatepicker]="dp2" [formControl]="date" readonly />
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="dp2"
+        disabled
+      ></mat-datepicker-toggle>
+      <mat-datepicker
+        #dp2
+        disabled
+        startView="multi-year"
+        (monthSelected)="setMonthAndYear($event, dp2)"
+        panelClass="example-month-picker"
+      >
+      </mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field
+      class="example-form-field"
+      style="margin-right: 25px; width: 249px"
+      *ngIf="
+        (this.gettype ? this.gettype : dataService.selectedTimesheetType) ===
+          1 ||
+        ((this.gettype ? this.gettype : dataService.selectedcycle) === 2 &&
+          this.Cycle !== 3) ||
+        (this.Cycle ? this.Cycle : dataService.selectedcycle) == 1
+      "
+    >
+      <mat-label>Week</mat-label>
+      <mat-date-range-input
+        [formGroup]="campaignOne"
+        [rangePicker]="campaignOnePicker"
+      >
+        <input
+          class="calendar"
+          matStartDate
+          placeholder="Start date"
+          formControlName="start"
+          readonly
+        />
+        <input
+          class="calendar"
+          matEndDate
+          placeholder="End date"
+          formControlName="end"
+          readonly
+        />
+      </mat-date-range-input>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="campaignOnePicker"
+        disabled
+      ></mat-datepicker-toggle>
+      <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+</div>
+<div
+  *ngIf="
+    (this.gettype ? this.gettype : dataService.selectedTimesheetType) === 2
+  "
+>
+  <ng-container>
+    <app-fixed-timesheet></app-fixed-timesheet>
+  </ng-container>
+</div>
+<div></div>
+<div
+  *ngIf="
+    (this.gettype ? this.gettype : dataService.selectedTimesheetType) === 1
+  "
+>
+  <mat-dialog-content class="time">
+    <!-- Table for Employee Details -->
+
+    <table
+      class="table"
+      mat-table
+      [dataSource]="dataService.employees"
+      multiTemplateDataRows
+    >
+      <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef class="name-head">
+          <mat-checkbox
+            (change)="$event ? toggleAllRows() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [aria-label]="checkboxLabel()"
+            [class.white-background]="!isAllSelected()"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row" class="name-cont">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="handleCheckboxChange(row)"
+            [checked]="selection.isSelected(row)"
+            [aria-label]="checkboxLabel(row)"
+            (change)="$event ? selection.toggle(row) : null"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      <!-- Checkbox Column -->
+
+      <ng-container matColumnDef="fname">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>FirstName</th>
+        <td class="name-cont" mat-cell *matCellDef="let element">
+          {{ element.firstName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Lname">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>Surname</th>
+        <td class="name-cont" mat-cell *matCellDef="let element">
+          {{ element.lastName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="toggleButton">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row" class="toggle-cell">
+          <button
+            mat-icon-button
+            (click)="$event.stopPropagation(); toggleExpansion(row)"
+          >
+            <mat-icon>{{ isExpanded(row) ? "remove" : "add" }}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <!-- ... (rest of your columns) -->
+      <ng-container matColumnDef="expand">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          aria-label="row actions"
+          class="name-head"
+        >
+          &nbsp;
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            aria-label="expand row"
+            (click)="
+              expandedElement = expandedElement === element ? null : element;
+              dataService.employeeInTimeSheet = element
+            "
+          >
+            <mat-icon *ngIf="expandedElement !== element"
+              >keyboard_arrow_down</mat-icon
+            >
+            <mat-icon *ngIf="expandedElement === element"
+              >keyboard_arrow_up</mat-icon
+            >
+          </button>
+        </td>
+      </ng-container>
+      <!-- Expandable row -->
+      <ng-container matColumnDef="expandedDetail">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [attr.colspan]="columnsToDisplayWithExpand.length"
+        >
+          <div
+            class="example-element-detail"
+            [@detailExpand]="
+              element == expandedElement ? 'expanded' : 'collapsed'
+            "
+          >
+            <ng-container *ngIf="element == expandedElement">
+              <!-- Only load the component when the element is expanded -->
+              <app-user-timesheet-rate
+                (click)="handleExpansionClick($event)"
+                [employee]="element"
+              ></app-user-timesheet-rate>
+            </ng-container>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Expenses">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>Expenses</th>
+        <td class="name-cont" mat-cell *matCellDef="let element">
+          <input
+            required="required"
+            type="number"
+            [(ngModel)]="element.expenses"
+            (ngModelChange)="onInputChanged(element)"
+            placeholder="Enter Amount"
+            pattern="^[0-9]*$"
+          />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="deduction">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>Deduction</th>
+        <td class="name-cont" mat-cell *matCellDef="let element">
+          <input
+            required="required"
+            type="number"
+            [(ngModel)]="element.deductions"
+            (ngModelChange)="onInputChanged(element)"
+            placeholder="Enter Amount"
+            pattern="^[0-9]*$"
+          />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="pay">
+        <th class="name-head" mat-header-cell *matHeaderCellDef>Gross Pay</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="name-cont"
+          id="p-form-data"
+        >
+          {{ element.grossPay }}
+        </td>
+      </ng-container>
+      <!-- setting Column -->
+      <tr
+        class="name-head"
+        mat-header-row
+        *matHeaderRowDef="columnsToDisplayWithExpand"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let element; columns: columnsToDisplayWithExpand"
+        class="example-element-row"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['expandedDetail']"
+        class="example-detail-row"
+      ></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[4, 5, 8]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+    <div style="display: flex; flex-direction: column">
+      <div style="float: right; margin-right: 26px" align="end">
+        <!-- Display Subtotal -->
+      </div>
+    </div>
+  </mat-dialog-content>
+  <div style="display: flex; flex-direction: column">
+    <div style="float: right; margin-right: 26px" align="end">
+      <p>
+        Subtotal:
+        {{
+          this.dataService.displayedTotalGrossPay
+            | currency : "EUR" : "symbol" : "1.2-2"
+        }}
+      </p>
+      <p>
+        Grand Total:{{
+          this.dataService.displayedTotalGrossPay
+            | currency : "EUR" : "symbol" : "1.2-2"
+        }}
+      </p>
+    </div>
+    <mat-dialog-actions align="end">
+      <ng-container *ngIf="dataService.isCurrentApprover">
+        <button mat-stroked-button (click)="canceldialog()" color="primary">
+          Cancel
+        </button>
+        <button
+          mat-stroked-button
+          (click)="statusRejected()"
+          style="background-color: #d2042d; color: white"
+        >
+          Reject
+        </button>
+        <button
+          mat-stroked-button
+          (click)="statusApproved()"
+          cdkFocusInitial
+          style="background-color: #228b22; color: white"
+        >
+          Approve
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!dataService.isCurrentApprover">
+        <button mat-stroked-button (click)="canceldialog()" color="primary">
+          Cancel
+        </button>
+        <ng-container *ngIf="dataService.isCurrentApproverquery">
+          <button
+            mat-stroked-button
+            (click)="updateTimesheet()"
+            cdkFocusInitial
+            style="background-color: #00b2e2; color: white"
+          >
+            Save
+          </button>
+          <button
+            mat-stroked-button
+            (click)="saveAndApprove()"
+            cdkFocusInitial
+            style="background-color: #00b2e2; color: white"
+          >
+            Save and Approve
+          </button>
+        </ng-container>
+      </ng-container>
+    </mat-dialog-actions>
+  </div>
+</div>

@@ -1,0 +1,200 @@
+<div class="main-content">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+  <div class="container-fluid" style="margin-top: 6px;">
+    <div class="row">
+      <div class="col-md-12" id="xerobtn">
+        
+        <div style="float: right;">
+        <button
+        type="button"
+        class="btn btn-sm"x
+        style="background-color:rgb(0,178,226)"
+      >
+      <a href="https://login.xero.com/identity/connect/authorize?response_type=code&client_id={{client.clientId}}&redirect_uri={{client.redirectUrl}}&scope=openid offline_access profile email accounting.contacts.read&state=123">
+        Import Contacts from Xero
+    </a>
+      </button>
+      <div style="float: right;padding-left:10px">
+        <button
+        type="button"
+        class="btn btn-sm"
+        style="color:rgb(0,178,226);background-color:white;padding: 8px;"
+       (click)="Synchronize()"
+      >
+      <mat-icon style="padding-top: 3px;">swap_vert</mat-icon>
+      Synchronize with Sso.id
+      </button>
+      </div>
+    </div></div>
+      <div class="col-md-12">
+        
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <div>
+            <h4 class="card-title mt-0">Users</h4>
+          </div>
+          
+            <div >
+              <form style="float: right;margin-top:-33px;margin-right: -8px;" id="application-form">
+                <mat-form-field id="application-table-filter">
+                  <mat-label>Search....</mat-label>
+                  <input id="input" matInput (keyup)="applyFilter($event)" [(ngModel)]="value" #input />
+                  <!-- <ng-container> -->
+                  <!-- <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''" *ngIf="value">
+                    <mat-icon style="color: black;" >close</mat-icon>
+                  </button> -->
+                <!-- </ng-container> -->
+                </mat-form-field>
+              </form>
+            </div>
+            <mat-toolbar class="tool-bar" id="toolBar">
+              <div class="tool-bar-block">
+                <div class="tool-bar-num">
+                  {{ selection.selected.length }}
+                </div>
+                <div class="tool-bar-options">
+                  <div
+                    id="tool-bar-edit"
+                    [attr.attribute-you-are-targeting]="true"
+                  >
+                    <img
+                      src="/assets/img/faces/edit.svg"
+                      (click)="editUser()"
+                    />
+                  </div>
+                  <!-- (click)="openForm()" -->
+                  <div class="tool-bar-delete" id="toolDelete">
+                   
+                  </div>
+                </div>
+              </div>
+            </mat-toolbar>
+            <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+          </div>
+          <div class="card-body">
+            <!-- <mat-spinner></mat-spinner> -->
+            <div class="table-responsive">
+              <div class="mat-elevation-z8">
+                <table
+                  class="table table-hover"
+                  mat-table
+                  [dataSource]="dataSource"
+                >
+                  <!-- Checkbox Column -->
+                  <ng-container matColumnDef="select">
+                    <th
+                      class="checkbox"
+                      mat-header-cell
+                      *matHeaderCellDef
+                      class="checkbox-header"
+                    >
+                      <mat-checkbox
+                        (change)="$event ? toggleAllRows() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="
+                          selection.hasValue() && !isAllSelected()
+                        "
+                        [aria-label]="checkboxLabel()"
+                        (change)="openToolbar()"
+                      >
+                      </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      <mat-checkbox
+                        (click)="$event.stopPropagation()"
+                        (change)="handleCheckboxChange(row)"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)"
+                        (change)="
+                          $event ? selection.toggle(row) : null; openToolbar()
+                        "
+                      >
+                      </mat-checkbox>
+                    </td>
+                  </ng-container>
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <ng-container *ngIf="!isSmallScreen"
+                        >Id</ng-container>
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <ng-container *ngIf="!isSmallScreen"
+                      >{{ element.userId }}</ng-container> </td>
+                  </ng-container>
+
+                  <!-- client Column -->
+                  <ng-container matColumnDef="fullName">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      class="name-header"
+                    >
+                      Name
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="name-header">
+                      {{ element.firstName + element.lastName }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="email">
+                    <th
+                      mat-header-cell 
+                      *matHeaderCellDef
+                      class="name-header"
+                    >
+                      Email
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="name-header">
+                      {{ element.email }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="margin">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <ng-container *ngIf="!isSmallScreen"
+                        >Margin</ng-container>
+                      </th>
+                    <td mat-cell *matCellDef="let element">
+                   
+                      <ng-container *ngIf="!isSmallScreen"
+                        > {{ element.samotPlatformMargin |currency:"EUR" }}</ng-container>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="Credit">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <ng-container *ngIf="!isSmallScreen"
+                        >Credit limit</ng-container>
+                      </th>
+                    <td mat-cell *matCellDef="let element">
+                   
+                      <ng-container *ngIf="!isSmallScreen"
+                        > {{ element.creditLimit | currency:"EUR" }}</ng-container>
+                    </td>
+                  </ng-container>
+                 
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    class="mat-row"
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                    [class.selected-row]="selection.isSelected(row)"
+                  ></tr>
+                </table>
+
+                <mat-paginator
+                  [pageSizeOptions]="[12, 20, 50]"
+                  showFirstLastButtons
+                  aria-label="Select page of Employee"
+                  [pageSize]="selectedOption"
+                >
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

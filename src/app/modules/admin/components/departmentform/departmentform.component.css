@@ -1,0 +1,117 @@
+#dialog{
+
+    height: 24vh;
+    
+    overflow-y: hidden;
+}
+::ng-deep #Dform .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    font-size: 12px;
+}
+::ng-deep #Dform  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+    border-bottom:2px solid rgb(39, 38, 38);
+}
+
+::ng-deep #Dform  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+    border-bottom: 1px solid rgb(215, 211, 211) !important;}
+.create{
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 64px;
+    justify-content: space-between;
+    background-color: #00b2e2 !important;;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+::ng-deep.mdc-dialog .mdc-dialog__content {
+    padding: 0px;
+}
+.Checkbox:active{
+    background-color: #f7941d !important;
+}
+
+
+
+.create-text{
+    color: white;
+    font-size: 20px;
+    margin-left: 16px;
+    font-family: 'popins',sans-serif;
+}
+.close-icon{
+    width: 17px;
+    height: 18px;
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+
+::ng-deep.dialog-cont{
+width: 566px !important;
+
+margin-left: 24px;
+margin-top: 10px;
+display: flex;
+flex-direction: column;
+
+
+
+}
+.input{
+    
+    margin-bottom: 0;
+}
+
+::ng-deep #Dform .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+
+font-family: Roboto, "Helvetica Neue", sans-serif;
+letter-spacing: 0px !important;
+}
+::ng-deep #Dform .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+    padding-top: 18px !important;
+    padding-bottom: 6px !important;
+}
+
+::ng-deep #Dform .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    height: 42px !important;
+    background:none !important;
+    width: 377px;
+    padding-left: 0px !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: 0.1px !important;
+}
+::ng-deep #Dform .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    height: 42px !important;
+    background-color: white;
+    width: 377px;
+    
+}
+::ng-deep #Dform .mdc-text-field--filled:not(.mdc-text-field--disabled):hover{
+ background-color:transparent !important;
+}
+::ng-deep #Dform .mdc-text-field--filled.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+    border-bottom: 1px solid rgb(215, 211, 211) !important;
+}
+::ng-deep #Dform .mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+    
+    padding-left: 0 !important;
+}
+::ng-deep #input-text .mdc-text-field--filled .mdc-line-ripple::before {
+    border-bottom:1px solid rgb(221, 217, 217) !important;
+}
+
+.option{
+    font-family: 'popins',sans-serif;
+    font-weight: 100 !important;
+}
+
+::ng-deep #Dform .mdc-text-field--filled .mdc-line-ripple::before {
+    border-bottom:1px solid rgb(221, 217, 217) !important;
+}
+#Dform{
+    height: 58px;
+}
+.action{
+    margin-right: 0px;
+    margin-top: 9px;
+}

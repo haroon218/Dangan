@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Rejected Reason</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+    <mat-form-field class="example-full-width" id="setTextArea">
+        <textarea matInput placeholder="Enter Reason.............." [(ngModel)]="reason.statusReason"></textarea>
+      </mat-form-field>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button
+      mat-stroked-button
+      (click)="cancelDialog()"
+      mat-dialog-close
+      color="primary"
+    >
+      Cancel
+    </button>
+    <button
+      mat-stroked-button
+      (click)="submit()"
+      cdkFocusInitial
+   
+      style="background-color:#00b2e2;color:white"
+    >
+     Submit
+    </button>
+  </mat-dialog-actions>

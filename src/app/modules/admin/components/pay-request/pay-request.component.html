@@ -1,0 +1,148 @@
+<div class="main-content">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+</div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+        
+          <div class="card card-plain">
+            <div class="card-header card-header-danger">
+              <div style="display: inline-block">
+                <h4 class="card-title mt-0">Pay Requests</h4>
+              </div>
+              <div style="float: right; padding: 0px">
+                <form id="roles-drop">
+                  <mat-form-field id="rolesdown">
+                    <mat-label class="role-set">Organization</mat-label>
+                    <mat-select
+                      disableRipple
+                      [(ngModel)]="selectedOption"
+                      (selectionChange)="getpayrequests()"
+                    >
+                      <mat-option
+                        *ngFor="let option of organizations"
+                        [value]="option.id"
+                      >
+                        {{ option.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </form>
+              </div>
+              <mat-toolbar class="tool-bar" id="toolBar">
+                <div class="tool-bar-block">
+                  <div class="tool-bar-num">
+                    {{ selection.selected.length }}
+                  </div>
+                  <div class="tool-bar-options">
+                  
+                    <div class="tool-bar-delete" id="toolDelete">
+                      <img
+                        src="/assets/img/faces/delete.svg"
+                        alt=""
+                        (click)="delEmployees()"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </mat-toolbar>
+              <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="mat-elevation-z8">
+                  <table
+                    class="table table-hover"
+                    mat-table
+                    [dataSource]="dataSource"
+                    matSort
+                    (matSortChange)="announceSortChange($event)"
+                  >
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                      <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox
+                          (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="
+                            selection.hasValue() && !isAllSelected()
+                          "
+                          [aria-label]="checkboxLabel()"
+                          (change)="openToolbar()"
+                        >
+                        </mat-checkbox>
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <mat-checkbox
+                          (click)="$event.stopPropagation()"
+                          (change)="handleCheckboxChange(row)"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)"
+                          (change)="
+                            $event ? selection.toggle(row) : null; openToolbar()
+                          "
+                        >
+                        </mat-checkbox>
+                      </td>
+                    </ng-container>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        PayRequestId
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="app-id">
+                        {{ element.id }}
+                      </td>
+                    </ng-container>
+  
+                    <!-- Name Column -->
+                   
+                     <ng-container matColumnDef="weight">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        Status
+                      </th>
+                        <td mat-cell *matCellDef="let element" class="app-id" [ngClass]="getStatusColorClass(element.payRequestStatus)">
+                          {{ element.payRequestStatus === 1 ? 'Pending' : element.payRequestStatus === 2 ? 'Approved' : element.payRequestStatus === 3 ? 'Rejected' : 'Unknown' }}
+                      </td>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="symbol" style="text-align: center;">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        Details
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="app-id" style="cursor: pointer;">
+                     <mat-icon class="material-icons" (click)="viewRequest(element, i)">visibility</mat-icon>
+
+                    </td>
+                      
+                    </ng-container>
+  
+                  
+  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr
+                      class="mat-row"
+                      mat-row
+                      *matRowDef="let row; columns: displayedColumns"
+                      [class.selected-row]="selection.isSelected(row)"
+                    ></tr>
+                  </table>
+  
+                  <mat-paginator
+                    [pageSizeOptions]="[10, 50, 100]"
+                    showFirstLastButtons
+                    aria-label="Select page of periodic elements"
+                  >
+                  </mat-paginator>
+                </div>
+              </div>
+              <!-- <button class="pay-request" mat-raised-button (click)="payRequest()" >Pay Request</button> -->
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

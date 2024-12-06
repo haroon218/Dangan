@@ -1,0 +1,143 @@
+<div class="main-content" style="margin-top: 0px;">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+</div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="create">
+         
+          <div style="margin-top: 41px;">
+            <img
+              src="/assets/img/faces/add_library_icon.png"
+              (click)="organizationcreate()"
+            />
+          </div>
+        </div>
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0">Organizations</h4>
+            <mat-toolbar class="tool-bar" id="toolBar">
+              <div class="tool-bar-block">
+                <div class="tool-bar-num">
+                  {{ selection.selected.length }}
+                </div>
+                <div class="tool-bar-options">
+                  <div
+                    id="tool-bar-edit"
+                    [attr.attribute-you-are-targeting]="true"
+                  >
+                    <img
+                      src="/assets/img/faces/edit.svg"
+                      (click)="editOrganization()"
+                    />
+                  </div>
+                  <div class="tool-bar-delete" id="toolDelete">
+                    <img
+                      src="/assets/img/faces/delete.svg"
+                      alt=""
+                      (click)="delEmployees()"
+                    />
+                  </div>
+                </div>
+              </div>
+            </mat-toolbar>
+            <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <div class="mat-elevation-z8">
+                <table
+                  class=" table table-hover"
+                 
+                  mat-table
+                  [dataSource]="dataSource"
+                  matSort
+                  (matSortChange)="announceSortChange($event)"
+                >
+                  <!-- Checkbox Column -->
+                  <ng-container matColumnDef="select">
+                    <th
+                      class="checkbox"
+                      mat-header-cell
+                      *matHeaderCellDef
+                      class="checkbox-header"
+                    >
+                      <mat-checkbox
+                      (change)="$event ? toggleAllRows() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="
+                        selection.hasValue() && !isAllSelected()
+                      "
+                      [aria-label]="checkboxLabel()"
+                      [class.white-background]="!isAllSelected()"
+                      (change)="openToolbar()"
+                      >
+                      </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      <mat-checkbox
+                      (click)="$event.stopPropagation()"
+                      (change)="handleCheckboxChange(row)"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)"
+                      (change)="
+                        $event ? selection.toggle(row) : null; openToolbar()
+                      "
+                      >
+                      </mat-checkbox>
+                    </td>
+                  </ng-container>
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>Id</th>
+                    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+                  </ng-container>
+
+                  <!-- client Column -->
+                  <ng-container matColumnDef="name">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef
+                      mat-sort-header
+                      class="name-header"
+                    >
+                      Name
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="name-header">
+                      {{ element.name }}
+                    </td>
+                  </ng-container>
+
+                  <!--  setting Column -->
+
+                  <!-- <ng-container class="settings" matColumnDef="icon">
+                        <th mat-header-cell *matHeaderCellDef > Config </th>
+                        <td mat-cell *matCellDef="let element"> 
+                          <img class="setting-icon" [src]="element.icon" alt="" (click)="orgnization()"> </td>
+                      </ng-container> -->
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    class="mat-row"
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                    [class.selected-row]="selection.isSelected(row)"
+                  ></tr>
+                </table>
+
+                <mat-paginator
+                [pageSizeOptions]="[10, 20,50]"
+                showFirstLastButtons
+                aria-label="Select page of Employee"
+                [pageSize]="selectedOption"
+              >
+              </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

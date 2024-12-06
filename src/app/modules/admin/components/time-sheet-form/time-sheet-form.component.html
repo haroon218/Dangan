@@ -1,0 +1,88 @@
+<!-- <div class="highlight-container" [appHighlightWeek]="selectedWeek"></div> -->
+<div class="overlay" *ngIf="loading">
+  <div class="loader"></div>
+</div>
+<div class="main">
+  <div class="profile-header">
+    <div class="profile-text">Time Sheet</div>
+    <div class="close-icon">
+      <mat-form-field class="drop">
+        <mat-label>Timesheet Type</mat-label>
+        <mat-select [(value)]="this.gettype ? this.gettype : dataService.selectedTimesheetType">
+          <ng-container *ngFor="let type of timesheetTypes">
+            <mat-option *ngIf="!this.gettype || this.gettype === type.id" [value]="type.id">
+              {{ type.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field class="drop" *ngIf="(this.gettype ? this.gettype : dataService.selectedTimesheetType) === 2">
+        <mat-label>Payroll cycle</mat-label>
+        <mat-select [(value)]="this.Cycle ? this.Cycle : dataService.selectedcycle" (selectionChange)="onPayrollCycleChange($event)">
+          <ng-container  *ngFor="let cycle of payrollCycle">
+          <mat-option *ngIf="!this.Cycle || this.Cycle === cycle.id" [value]="cycle.id">
+            {{ cycle.name }}
+          </mat-option>
+        </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="drop" *ngIf="(this.gettype ? this.gettype : dataService.selectedTimesheetType) === 2 && ((this.Cycle ? this.Cycle : dataService.selectedcycle) === 3 )">
+        <mat-label>Month and Year</mat-label>
+        <input matInput [matDatepicker]="dp" [formControl]="date"  [readOnly]="isEdit">
+        <mat-datepicker-toggle matIconSuffix [for]="dp" [disabled]="isEdit"></mat-datepicker-toggle>
+        <mat-datepicker #dp
+                        startView="multi-year"
+                        (monthSelected)="setMonthAndYear($event, dp)"
+                        panelClass="example-month-picker">
+        </mat-datepicker>
+      </mat-form-field>
+      
+     
+   
+
+<mat-form-field class="example-form-field" style="margin-right: 25px;" *ngIf="(this.gettype ? this.gettype : dataService.selectedTimesheetType) === 1 || ((this.gettype ? this.gettype : dataService.selectedcycle) === 2 && this.Cycle !== 3) || (this.Cycle ? this.Cycle : dataService.selectedcycle)==1">
+  <mat-label>Week</mat-label>
+  <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
+    <input class="calendar" matStartDate  placeholder="Start date" formControlName="start" [readOnly]="isEdit" >
+    <input class="calendar" matEndDate placeholder="End date" formControlName="end" [readOnly]="isEdit" >
+  </mat-date-range-input>
+  <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker" [disabled]="isEdit"></mat-datepicker-toggle>
+  <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+</mat-form-field>
+
+<!-- ... existing code ... -->
+
+
+<!-- ... existing code ... -->
+
+<!-- ... existing code ... -->
+
+      <!-- <mat-form-field class="drop">
+        <mat-label>OrgUnit</mat-label>
+        <mat-select [(ngModel)]="selectedOrgUnit"  (selectionChange) = "getEmployees()">
+          <mat-option *ngFor="let Ounit of Ounits" [value]="Ounit.idpId">
+            {{ Ounit.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+    </div>
+  </div>
+
+   <div *ngIf="(this.gettype ? this.gettype : dataService.selectedTimesheetType) === 1">
+    <app-hourly-timesheet (grandTotalChanged)="handleGrandTotalChanged($event)"></app-hourly-timesheet>
+  </div>
+  
+  <div *ngIf="(this.gettype ? this.gettype : dataService.selectedTimesheetType) === 2" >
+    
+      <ng-container >
+        <app-fixed-salary-timesheet></app-fixed-salary-timesheet>
+      </ng-container>
+     
+    
+  </div>
+  
+  
+  
+</div>

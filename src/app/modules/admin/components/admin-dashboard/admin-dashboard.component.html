@@ -1,0 +1,134 @@
+<div class="main-content">
+    <div class="overlay" *ngIf="loading">
+        <div class="loader"></div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats" routerLink="/admin/users" style="cursor:pointer">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">person</i>
+                        </div>
+                        <p class="card-category">Total SamotClients</p>
+                        <h3 class="card-title">{{totalusers}}</h3>
+                    </div>
+                    <div class="card-footer" style="margin-top: 48px;">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6" style="cursor:pointer" (click)="redirectToTimesheetComponent(4)">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                          <i class="material-icons">check_circle</i>
+  
+                        </div>
+                        <p class="card-category">Approved Timesheets</p>
+                        <h3 class="card-title">{{status1Count}}</h3>
+                    </div>
+                    <div class="card-footer" style="margin-top: 48px;">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 col-sm-6"  style="cursor:pointer" (click)="redirectToTimesheetComponent(1)">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">schedule</i>
+                        </div>
+                        <p class="card-category">Awaiting of Approval</p>
+                        <h3 class="card-title">{{ status3Count }}</h3>
+                    </div>
+                    <div class="card-footer" style="margin-top: 48px;">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6" style="cursor:pointer" (click)="redirectToTimesheetComponent(5)">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">highlight_off</i>
+
+                        </div>
+                        <p class="card-category">Rejected Timesheets</p>
+                        <h3 class="card-title">{{ status2Count }}</h3>
+                    </div>
+                    <div class="card-footer" style="margin-top: 48px;">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <div class="ct-chart" id="dailySalesChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Balance Summary</h4>
+                        <p class="card-category">
+                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today bALANCE</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-warning">
+                        <div class="ct-chart" id="websiteViewsChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">EBIT(Earning Before Internet & Tax)</h4>
+                        <p class="card-category">Last Performance</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-danger">
+                        <div class="ct-chart" id="completedTasksChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Salaries</h4>
+                        <p class="card-category">Last Performance</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+  </div>
+   -->

@@ -1,0 +1,225 @@
+<div class="main-content">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+</div>
+<mat-dialog-content class="time">
+  <!-- Table for Employee Details -->
+
+  <table mat-table  [dataSource]="dataservice.employees" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef class="name-head" style="text-align: left;">
+        <mat-checkbox
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()"
+          [class.white-background]="!isAllSelected()"
+        >
+        </mat-checkbox>
+      </th>
+
+      <td mat-cell *matCellDef="let row" class="name-cont">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="handleCheckboxChange(row)"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)"
+          (change)="$event ? selection.toggle(row) : null"
+        >
+        </mat-checkbox>
+      </td>
+      <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="item">
+      <th class="name-head" mat-header-cell *matHeaderCellDef >Name</th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        {{ element.firstName }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef> Total </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Name">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>Surname</th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        {{ element.lastName }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cost">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>Annual Salary</th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        €{{ element.annualSalary }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="grossPay">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>Gross Pay</th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        {{ calculateGrossPay(element.annualSalary) | currency : "EUR" }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+         {{ calculateTotalGrossPay() | currency : "EUR" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Bonus">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>Bonus</th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        <input
+          required="required"
+          type="number"
+          [(ngModel)]="element.bonus"
+          (ngModelChange)="onInputChanged(element)"
+          placeholder="Enter Amount"
+          pattern="^[0-9]*$"
+        />
+      </td>
+      <td mat-footer-cell *matFooterCellDef>         {{ calculateBonusSubtotal() | currency : "EUR" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Allowance">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>
+        Other Allowance
+      </th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        <input
+          required="required"
+          type="number"
+          [(ngModel)]="element.otherAllowance"
+          (ngModelChange)="onInputChanged(element)"
+          placeholder="Enter Amount"
+          pattern="^[0-9]*$"
+        />
+      </td>
+      <td mat-footer-cell *matFooterCellDef> {{ calculateotherAllowanceSubtotal() | currency : "EUR" }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Deductions">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>Deductions</th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        <input
+          required="required"
+          type="number"
+          [(ngModel)]="element.deductions"
+          (ngModelChange)="onInputChanged(element)"
+          placeholder="Enter Amount"
+          pattern="^[0-9]*$"
+        />
+      </td>
+      <td mat-footer-cell *matFooterCellDef>  -{{ calculatedeductionSubtotal() | currency : "EUR" }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="BIK">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>BIK</th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        <input
+          required="required"
+          type="number"
+          [(ngModel)]="element.bik"
+          (ngModelChange)="onInputChanged(element)"
+          placeholder="Enter Amount"
+          pattern="^[0-9]*$"
+        />
+      </td>
+      <td mat-footer-cell *matFooterCellDef> {{ calculatebikSubtotal() | currency : "EUR" }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="TaxablePay">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>
+        Gross TaxablePay Including BIK
+      </th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        {{ element.TaxablePay | currency : "EUR" }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef> {{ calculateSubtotal() | currency : "EUR" }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Expenses">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>Expenses</th>
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        <input
+          required="required"
+          type="number"
+          [(ngModel)]="element.expenses"
+          (ngModelChange)="onInputChanged()"
+          placeholder="Enter Amount"
+          pattern="^[0-9]*$"
+        />
+      </td>
+      <td mat-footer-cell *matFooterCellDef> {{ calculateexpensesSubtotal() | currency : "EUR" }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Pension">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>
+        Employee Pension Contribution
+      </th>
+
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        <input
+          required="required"
+          type="number"
+          [(ngModel)]="element.employeePensionContribution"
+          (ngModelChange)="onInputChanged()"
+          placeholder="Enter Amount"
+          pattern="^[0-9]*$"
+        />
+      </td>
+      <td mat-footer-cell *matFooterCellDef> {{ calculatepensionSubtotal() | currency : "EUR" }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Pensions">
+      <th class="name-head" mat-header-cell *matHeaderCellDef>
+        Employeer Pension Contribution
+      </th>
+
+      <td class="name-cont" mat-cell *matCellDef="let element">
+        <input
+          required="required"
+          type="number"
+          [(ngModel)]="element.employeerPensionContribution"
+          (ngModelChange)="onInputChanged()"
+          placeholder="Enter Amount"
+          pattern="^[0-9]*$"
+        />
+      </td>
+      <td mat-footer-cell *matFooterCellDef> {{ calculatepensionerSubtotal() | currency : "EUR" }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+  
+  <mat-paginator
+    [pageSizeOptions]="[4, 5, 8]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</mat-dialog-content>
+<div style="display: flex; flex-direction: column">
+  <div style="float: right; margin-right: 26px" align="end">
+    <!-- Display Subtotal -->
+    <p>Subtotal: {{ calculateSubtotal() | currency : "EUR" }}</p>
+    <p>Grand Total: {{calculateSubtotal()  | currency : "EUR" }}</p>
+  </div>
+  <mat-dialog-actions align="end" id="setbtn">
+    <button mat-stroked-button (click)="cancelDialog()" color="primary">
+      Cancel
+    </button>
+    <button  *ngIf="isStatusPendingOrApproved()"
+      (click)="selectedRow?.timesheetId ? updateTimesheet() : addTimesheet()"
+      mat-stroked-button
+      style="margin-right: 14px"
+      cdkFocusInitial
+      style="background-color: #00b2e2; color: white;cursor: pointer;"
+    >
+      {{ selectedRow?.timesheetId ? "Update" : "Create" }}
+    </button>
+  </mat-dialog-actions>
+</div>

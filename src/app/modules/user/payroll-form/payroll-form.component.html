@@ -1,0 +1,133 @@
+<div matCardTitle>
+  <div style="text-align: right;">
+    <div class="setoverlay" *ngIf="loading">
+      <div class="loader"></div>
+  </div>
+    <img src="/assets/img/faces/cancel.png" style="width: 23px;
+    height: 23px;
+    cursor: pointer;
+    margin-right: 12px;
+    margin-top: 12px;" (click)="canceldialog()">
+  </div>
+</div>
+<div class="card-body">
+    <div class="table-responsive">
+      <div class="mat-elevation-z8">
+        <table
+          class="table"
+          mat-table
+          [dataSource]="employees"
+          matSort
+          (matSortChange)="announceSortChange($event)"
+          
+        >
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox
+                (change)="$event ? toggleAllRows() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="
+                  selection.hasValue() && !isAllSelected()
+                "
+                [aria-label]="checkboxLabel()"
+                (change)="openToolbar()"
+              >
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox
+                (click)="$event.stopPropagation()"
+                (change)="handleCheckboxChange(row)"
+                [checked]="selection.isSelected(row)"
+                [aria-label]="checkboxLabel(row)"
+                (change)="
+                  $event ? selection.toggle(row) : null; openToolbar()
+                "
+              >
+              </mat-checkbox>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="name">
+            <th
+              class="name-head"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Name
+            </th>
+            <td class="name-cont" mat-cell *matCellDef="let element">
+              {{ element.firstName + " " + element.lastName }}
+            </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef class="head-id">
+              Annual Salary
+            </th>
+            <td mat-cell *matCellDef="let element" class="app-id">
+              {{ element.salary }}
+            </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef class="head-id">
+              Monthly Salary
+            </th>
+            <td mat-cell *matCellDef="let element" class="app-id">
+              {{ element.salary / 12| number:'1.3-3' }}
+            </td>
+          </ng-container>
+
+          <!-- client Column -->
+          <ng-container matColumnDef="client">
+            <th mat-header-cell *matHeaderCellDef class="head-id">
+              Hourly Salary
+            </th>
+            <td mat-cell *matCellDef="let element" class="app-id">
+              {{ element.salary / 2920| number:'1.3-3'  }}
+            </td>
+          </ng-container>
+
+          <!-- created Column -->
+          <ng-container matColumnDef="payable">
+            <th mat-header-cell *matHeaderCellDef class="head-id">
+              Pay To Employee
+            </th>
+            <td mat-cell *matCellDef="let element" class="app-id" id="p-form-data">
+                <mat-form-field>
+                    <input matInput required="required" type="number"  [(ngModel)]="element.payable" placeholder="Enter Amount">
+                  </mat-form-field>
+            </td>
+          </ng-container>
+
+          <!--  setting Column -->
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            class="mat-row"
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            [class.selected-row]="selection.isSelected(row)"
+          ></tr>
+        </table>
+
+        <!-- <mat-paginator
+          [pageSizeOptions]="[1, 2, 3]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator> -->
+      </div>
+    </div>
+    <!-- <button class="pay-request" mat-raised-button (click)="payRequest()" >Pay Request</button> -->
+
+  </div>
+  <mat-dialog-actions align="end" class="btnfont">
+    <button mat-button (click)="canceldialog()" class="btnfont">CANCEL</button>
+    <button mat-button  (click)="payRequest()" class="btnfont">CREATE</button>
+  </mat-dialog-actions>

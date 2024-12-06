@@ -1,0 +1,107 @@
+<div class="heading">
+  <div style="text-align: right;">
+    <img src="/assets/img/faces/cancel.png" style="width: 23px;
+    height: 23px;
+    cursor: pointer;
+    margin-right: 12px;
+    margin-top: 12px;" mat-dialog-close>
+  </div>
+  <!-- <div class="closebtn" style="text-align: right;margin-top: 8px;margin-right: 10px;"><img src="/assets/img/faces/close.svg" alt="" mat-dialog-close style="width: 24px;"></div> -->
+</div>
+<div class="card-body" style="height: 80%;">
+    <div class="table-responsive">
+      <div class="mat-elevation-z8">
+        <table
+          class="table table-hover"
+          mat-table
+         [dataSource]="payrequest.payRequestDetails"
+          matSort
+          (matSortChange)="announceSortChange($event)"
+          style="overflow-y: scroll;"
+        >
+             <!-- Checkbox Column -->
+             <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                  (change)="$event ? toggleAllRows() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="
+                    selection.hasValue() && !isAllSelected()
+                  "
+                  [aria-label]="checkboxLabel()"
+                  (change)="openToolbar()"
+                >
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="handleCheckboxChange(row)"
+                  [checked]="selection.isSelected(row)"
+                  [aria-label]="checkboxLabel(row)"
+                  (change)="
+                    $event ? selection.toggle(row) : null; openToolbar()
+                  "
+                >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef class="head-id">
+                EmployeeName
+            </th>
+            <td mat-cell *matCellDef="let element" class="app-id">
+              {{ element.employee.firstName + " "+ element.employee.lastName }}
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th
+              class="name-head"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Payable
+            </th>
+            <td class="name-cont" mat-cell *matCellDef="let element">
+              {{ element.payable  }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            class="mat-row"
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            
+          ></tr>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+
+      <!-- <mat-dialog-actions align="end" class="">
+        <button mat-button (click)="RejectRequest()" class="action-button shadow animate red">Reject</button>
+        <button mat-button (click)="AcceptRequest()" class="action-button shadow animate green">Accept</button>
+      </mat-dialog-actions> -->
+      <div *ngIf="data && data.element && data.element.payRequestStatus !== undefined">
+        <!-- PayRequestStatus: {{ data.element.payRequestStatus }} -->
+      
+        <div *ngIf="data.element.payRequestStatus === 1">
+          <!-- <p>Debug: payRequestStatus is 1</p> -->
+      
+          <mat-dialog-actions align="end" class="">
+            <button mat-button (click)="RejectRequest()" class="action-button shadow animate red">Reject</button>
+            <button mat-button (click)="AcceptRequest()" class="action-button shadow animate green">Accept</button>
+          </mat-dialog-actions>
+        </div>
+      </div>
+      
+     
+      
+  

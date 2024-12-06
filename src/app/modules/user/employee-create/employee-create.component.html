@@ -1,0 +1,224 @@
+
+<mat-dialog-content class="profile-content">
+  <div class="overlay" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+  <div class="profile-header">
+    <div class="profile-text"> {{ employee.employeeId ? "Update" : "Create" }}</div>
+      <div class="close-icon" style="text-align: right;padding-right:10px;color:white">
+        <mat-icon class="material-icons" mat-dialog-close>clear</mat-icon>
+    </div>
+  </div>
+  
+  <!-- <mat-tab-group id="setgrow"> -->
+    <!-- Basic Informations -->
+    <!-- <mat-tab label="Basic Information"> -->
+      <div class="profile-dialog-forms-data">
+        <div class="p-dialog-cont-1">
+          <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>First name</mat-label>
+              <input
+                class="value"
+                matInput
+                placeholder=""
+                [formControl]="NameFormControl"
+                [(ngModel)]="employee.firstName"
+              />
+              <mat-error *ngIf="NameFormControl.hasError('required')">
+                Username is <strong>required</strong>
+              </mat-error>
+              
+              <mat-error *ngIf="NameFormControl.hasError('maxlength')">
+                Username should be no more than 10 characters long
+              </mat-error>
+            </mat-form-field>
+          </form>
+          <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input
+                class="value"
+                matInput
+                placeholder=""
+                type="email"
+                [formControl]="EmailFormControl"
+                [(ngModel)]="employee.email"
+              />
+              <mat-error *ngIf="EmailFormControl.hasError('email')">
+                Please enter valid Email
+              </mat-error>
+              <mat-error *ngIf="EmailFormControl .hasError('required')">
+                <strong>required</strong>
+               </mat-error>
+            </mat-form-field>
+          </form>
+          <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>AnnualSalary</mat-label>
+              <input
+                class="value"
+                matInput
+                placeholder=""
+                [formControl]="SalaryFormControl"
+                [(ngModel)]="employee.annualSalary"
+              />
+              <mat-error *ngIf="SalaryFormControl.hasError('required')">
+                AnnualSalary is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="SalaryFormControl.hasError('pattern')">
+                Please enter a valid Annualsalary in number form
+              </mat-error>
+            </mat-form-field>
+          </form>
+
+          <form id="employee-sso-form" id="p-form-data">
+            
+            <mat-form-field id="setDate">
+              <mat-label>DateOfBirth</mat-label>
+              <input matInput [matDatepicker]="dobpicker" [(ngModel)]="employee.dob" style="font-size: 14px;">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="dobpicker"></mat-datepicker-toggle>
+              <mat-datepicker #dobpicker></mat-datepicker>
+            </mat-form-field>
+          </form>
+        
+          
+          <form id="Dform" id="p-form-data">
+            <mat-form-field id="setDate">
+              <mat-label>StartDate</mat-label>
+              <input matInput [matDatepicker]="startDatepicker" [(ngModel)]="employee.startDate" style="font-size: 14px;">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #startDatepicker></mat-datepicker>
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="p-dialog-cont-2">
+          <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>Surname</mat-label>
+              <input
+                class="value"
+                matInput
+                placeholder=""
+                [(ngModel)]="employee.lastName"
+              />
+            </mat-form-field>
+          </form>
+
+          <form id="employee-sso-form" id="p-form-data">
+            <mat-form-field id="input-t">
+              <mat-label>Address 1</mat-label>
+              <input class="value" matInput [(ngModel)]="employee.address1" />
+            </mat-form-field>
+          </form>
+          <form id="employee-sso-form" id="p-form-data">
+            <mat-form-field id="input-t">
+              <mat-label>Address 2</mat-label>
+              <input class="value" matInput [(ngModel)]="employee.address2" />
+            </mat-form-field>
+          </form>
+          <form id="employee-sso-form" id="p-form-data">
+            <mat-form-field id="input-t">
+              <mat-label>Address 3</mat-label>
+              <input class="value" matInput [(ngModel)]="employee.address3" />
+            </mat-form-field>
+          </form>
+          <form id="employee-sso-form" id="p-form-data">
+            <mat-form-field id="input-t">
+              <mat-label>Address 4</mat-label>
+              <input class="value" matInput [(ngModel)]="employee.address4" />
+            </mat-form-field>
+          </form>
+        </div>
+
+        <div class="p-dialog-cont-3">
+         
+          <form id="employee-sso-form" id="p-form-data">
+            <mat-form-field id="input-t">
+              <mat-label>BIC(Revolute)</mat-label>
+              <input class="value" matInput [(ngModel)]="employee.bic" />
+            </mat-form-field>
+          </form>
+          <form id="Dform" id="p-form-data">
+            <mat-form-field id="input-text">
+              <mat-label>IBAN</mat-label>
+              <input class="value" matInput [(ngModel)]="employee.iban" />
+            </mat-form-field>
+          </form>
+          <form id="p-form-data">
+            <mat-form-field class="example-full-width">
+              <mat-label>PPSN</mat-label>
+              <input
+                class="value"
+                matInput
+                placeholder=""
+                [(ngModel)]="employee.mobileNumber"
+              />
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+
+    <!-- Assigned Jobs -->
+    <!-- <mat-tab label="Assigned Jobs" id="assignedjob">
+      <div>
+        <mat-icon
+          role="img"
+          class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+          style="color: black; cursor: pointer; margin-left: 12px"
+          aria-hidden="true"
+          data-mat-icon-type="font"
+          (click)="addJobs()"
+        >add</mat-icon>
+      </div>
+
+     
+      <div *ngFor="let item of divItems; let i = index" id="widset" class="flex-containers">
+        <mat-form-field class="job-title" id="selectjob">
+          <mat-label>Select Job</mat-label>
+          <mat-select [(ngModel)]="item.selectedJobTitle" (ngModelChange)="updateRate(i)">
+            <mat-option *ngFor="let job of jobs" [value]="job.title">{{ job.title }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+        <div class="rate" id="rateset">
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Enter rate" pattern="^[0-9]*$" [value]="item.selectedJobRate">
+          </mat-form-field>
+        </div>
+      
+        <div class="delbtn">
+          <mat-icon
+            class="material-icons"
+            style="color: red; cursor: pointer; margin-top:14px"
+            (click)="deleteRow(i)"
+          >delete</mat-icon>
+        </div>
+      
+       
+      </div>
+      
+    </mat-tab> -->
+    
+    
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-stroked-button
+    (click)="cancelDialog()"
+    mat-dialog-close
+    color="primary"
+  >
+    Cancel
+  </button>
+  <button
+    mat-stroked-button
+    (click)="addEmployee()"
+    cdkFocusInitial
+    style="background-color:#00b2e2;color:white"
+  >
+    {{ employee.employeeId ? "Update" : "Create" }}
+  </button>
+</mat-dialog-actions>

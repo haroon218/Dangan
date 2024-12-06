@@ -1,0 +1,258 @@
+<div class="main-content">
+    <div class="overlay" *ngIf="loading">
+      <div class="loader"></div>
+  </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            
+            <div class="card card-plain">
+              <div class="card-header card-header-danger">
+                <div style="display: inline-block">
+                  <h4 class="card-title mt-0">AuditLogs</h4>
+                </div>
+                <div style="float: right; padding: 0px;display:flex">
+                  <div class="searchess" id="searchsetes">
+                    <form class="example-form" id="setwidthes">
+                      <mat-form-field class="example-full-width">
+                        <input
+                          type="text"
+                          placeholder=""
+                          aria-label="Number"
+                          matInput
+                          [formControl]="myControl"
+                          [(ngModel)]="organizationName" 
+                          [matAutocomplete]="auto"
+                          (focus)="getOrgUnit()"
+                          (keydown.enter)="getOrgUnit()"
+                        />
+                        <button
+                          matSuffix
+                          mat-icon-button
+                          aria-label="Clear"
+                          (click)="clearInput()"                    >
+                          <mat-icon class="material-icons" style="color: black;">clear</mat-icon>
+                        </button>
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of filteredOrganization | async" [value]="option.Name" >
+                            {{ option.Name }}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </form>
+                  </div> 
+
+                  <!-- <div style="padding-right: 13px;">
+                    <form id="roles-drop">
+                        <mat-form-field id="rolesdown">
+                          <mat-label class="role-set">Organization</mat-label>
+                          <mat-select
+                            disableRipple
+                            [(ngModel)]="dataService.organization"
+                            (selectionChange) = "getOrgUnit()"
+                          >
+                            <mat-option
+                              *ngFor="let option of Organizations"
+                              [value]="option.OrganizationId"
+                            >
+                              {{ option.Name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </form>
+                    </div> -->
+                      <div>
+                      <form id="roles-drop">
+                        <mat-form-field id="rolesdown">
+                          <mat-label class="role-set">OrgUnit</mat-label>
+                          <mat-select
+                            disableRipple
+                            [(ngModel)]="dataService.selectedOrganizationUnit"
+                            (selectionChange) = "getTimeSheet()"
+    
+                          >
+                            <mat-option
+                              *ngFor="let option of OrganizationUnit"
+                              [value]="option.groupId"
+                            >
+                              {{ option.name }}
+                            </mat-option>
+                            <mat-option>None</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </form>
+                    </div>
+                </div>
+                <mat-toolbar class="tool-bar" id="toolBar">
+                  <div class="tool-bar-block">
+                    <div class="tool-bar-num">
+                      {{ selection.selected.length }}
+                    </div>
+                    <div class="tool-bar-options">
+                    
+                      <div class="tool-bar-delete" id="toolDelete">
+                        <img
+                          src="/assets/img/faces/delete.svg"
+                          alt=""
+                          (click)="delLogs()"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </mat-toolbar>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <div class="mat-elevation-z8">
+         
+                    <table
+                    class="table table-hover"
+                    mat-table
+                    [dataSource]="dataSource"
+                  >
+                    
+                    <!-- <ng-container matColumnDef="select">
+                      <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox
+                          (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="
+                            selection.hasValue() && !isAllSelected()
+                          "
+                          [aria-label]="checkboxLabel()"
+                          [class.white-background]="!isAllSelected()"
+                          (change)="openToolbar()"
+                        >
+                        </mat-checkbox>
+                      </th>
+    
+                      <td mat-cell *matCellDef="let row">
+                        <mat-checkbox
+                          (click)="$event.stopPropagation()"
+                          (change)="handleCheckboxChange(row)"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)"
+                          (change)="
+                            $event ? selection.toggle(row) : null; openToolbar()
+                          "
+                        >
+                        </mat-checkbox>
+                      </td>
+                    </ng-container> -->
+                    <ng-container matColumnDef="id">
+                      <th class="head-id" mat-header-cell *matHeaderCellDef style="padding-left: 20px;">
+                        Id
+                      </th>
+                      <td mat-cell *matCellDef="let element" style="padding-left: 20px;">
+                        {{ element.timesheetId }}
+                      </td>
+                    </ng-container>              
+                    <ng-container matColumnDef="Type">
+                      <th class="head-id" mat-header-cell *matHeaderCellDef>
+                        Type
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        <ng-container *ngIf="element.type === 1">
+                          Hourly
+                        </ng-container>
+                        <ng-container *ngIf="element.type === 2">
+                          Fixed
+                          <ng-container *ngIf="element.payrollCycle === 1"> (Weekly)</ng-container>
+                          <ng-container *ngIf="element.payrollCycle === 2"> (Bi-weekly)</ng-container>
+                          <ng-container *ngIf="element.payrollCycle === 3"> (Monthly)</ng-container>
+                        </ng-container>
+                      </td>
+                    </ng-container>
+                    
+                   
+                   
+                    <ng-container matColumnDef="Period">
+                      <th class="head-id" mat-header-cell *matHeaderCellDef>
+                        Period
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        <ng-container *ngIf="!element.weekStartDate && !element.weekEndDate">
+                          {{ getMonthName(element.monthNumber) }}- {{ element.year }}  
+                                          </ng-container>
+                        <ng-container *ngIf="element.weekStartDate && element.weekEndDate">
+                          {{ element.weekStartDate | date : "MMM d, y" }} -
+                          {{ element.weekEndDate | date : "MMM d, y" }}
+                        </ng-container>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Status">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        Status
+                      </th>
+    
+                      <td mat-cell *matCellDef="let element" class="app-id">
+                       <ng-container>
+                          {{ getStatusText(element.status) }}
+                        
+                        </ng-container>
+                      </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="SubTotal">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        Total
+                      </th>
+                      <td
+                        mat-cell
+                        *matCellDef="let element"
+                        class="app-id"
+                        style="cursor: pointer"
+                      >
+                        {{ element.subTotal  | currency : "EUR" }}
+                      </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="view">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        AuditLog
+                      </th>
+                      <td
+                        mat-cell
+                        *matCellDef="let element"
+                        class="app-id"
+                        style="cursor: pointer"
+                      >
+                      <mat-icon style="cursor: pointer;" class="material-icons" (click)="openForm(element)">assignment</mat-icon>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="download">
+                      <th mat-header-cell *matHeaderCellDef class="head-id">
+                        Workflow Evidence
+                      </th>
+                      <td
+                        mat-cell
+                        *matCellDef="let element"
+                        class="app-id"
+                        style="cursor: pointer;padding-left: 50px;"
+                      >
+                      <mat-icon class="material-icons" (click)="downloadReport(element.timesheetId)" style="cursor: pointer;">save_alt</mat-icon>
+                      </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr
+                      class="mat-row"
+                      mat-row
+                      *matRowDef="let row; columns: displayedColumns"
+                      [class.selected-row]="selection.isSelected(row)"
+                    ></tr>
+                  </table>
+                    <mat-paginator
+                      [pageSizeOptions]="[ 10, 20,50]"
+                      showFirstLastButtons
+                      aria-label="Select page of Employee"
+                    >
+                    </mat-paginator>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    

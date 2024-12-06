@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .error-container {
+    text-align: center;
+  }
+  
+  .error-container h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    color: #ff6347 ;
+  }
+  
+  .error-container h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+  
+  .error-container p {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+  
+  .contact-info {
+    margin-bottom: 2em;
+  }
+  
+  .contact-info ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contact-info li {
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+  }
+  
+  .btn {
+    background-color:rgb(0,178,226);
+    color: #fff;
+    padding: 0.5em 1em;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color:rgb(0,178,226);
+  }
+  .not-found-container {
+    height: 100vh; /* Set the container height to full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-position: center; /* Center the background image */
+  }
+  .oops {
+    animation: bounce 0.4s infinite alternate;
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-20px); /* Adjust as needed */
+    }
+  }

@@ -1,0 +1,310 @@
+
+
+
+
+      
+      
+.create {
+   
+    display: flex;
+    justify-content: end;
+}
+.create img{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+
+}
+.mat-elevation-z8{
+
+    box-shadow: none;
+}
+.organization-nav{
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    
+}
+.organization-text{
+    color: #f7941d;
+    font-family:' Poppins', sans-serif;
+    letter-spacing: 0.1px;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 24px;
+    height: 23px;
+    width: 209px;
+    
+}
+::ng-deep.organization-search{
+    margin-right: 24px;
+    margin-top: 12px;
+    
+    width: 257px;
+    height: 40px;
+    display: flex;
+}
+
+
+.search-icon{
+    margin-left: 13px;
+    
+    width: 40px;
+    height: 40px;
+    font-weight: 600;
+    font-size: 21px;
+    border-radius: 100%;
+    
+}
+::ng-deep #organization-form{
+  width: 138px !important;
+  margin-right: 20px;
+  height: 40px;
+
+  position: relative;
+}
+
+
+#input{
+
+  height: 20px;
+  font-size: 10px;
+  color: rgb(80, 78, 78);
+
+}
+::ng-deep #organization-form .mdc-text-field--filled .mdc-line-ripple::before {
+  border-bottom:1px solid rgb(227, 224, 224) !important;
+}
+::ng-deep #organization-form .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+  padding-top: 12px;
+  padding-bottom: 8px;
+  height: 31px;
+}
+::ng-deep #organization-form .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  
+  height: 39px;
+  padding: 3px;
+  background-color: white;
+}
+mat-label{
+  color: #f7941d;
+  transform-origin: left top;
+  font-size: 15px;
+  
+}
+::ng-deep #organization-form  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+  border-bottom:1px solid rgb(39, 38, 38);
+}
+::ng-deep #organization-form .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  line-height: normal;
+  pointer-events: all;
+  top: 23px;
+}
+.org-table{
+    background-color: transparent;
+}
+.paginator{
+    background-color: transparent;
+}
+#organization-table-filter{
+  width: 138px !important;
+
+
+}
+::ng-deep.-search{
+    margin-right: 24px;
+    margin-top: 12px;
+  
+    width: 257px;
+    height: 40px;
+    display: flex;
+}
+
+.search-side{
+    margin-top: 8px;
+    margin-left: 8px;
+    
+    width: 24px;
+    height: 24px;
+}
+.book-mark{
+    width: 40px;
+    height: 40px;
+    margin-left: 18px;
+    border-radius: 100%;
+}
+.book-icon{
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    margin-top: 8px;
+}
+.setting-icon{
+    padding-left: 12px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+  ::ng-deep.app-id{
+    
+    padding-left: 0 !important;
+
+  }
+  .head-id{
+
+    padding-left: 0 !important;
+    
+  }
+  
+  dc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell {
+    /* background: inherit; */
+    padding:0px;
+}
+.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell {
+  padding-right: 0;
+  background: inherit;
+}
+  
+  
+  
+  
+  .name-head{
+    letter-spacing: 0px;
+    
+  }
+  .name-cont{
+    
+    font-weight: 400;
+    letter-spacing: 0px;
+  }
+  
+.checkbox-header{
+    width: 55px;
+}
+.name-header{
+    
+    padding-left: 200px;
+    width: 700px;
+}
+
+.tool-bar{
+    align-items: center !important;
+    position:absolute;
+    background-color: rgb(0,178,226);
+    z-index: 6;
+    width:100%;
+    top: 0;
+    left: 0;
+    height: 90px;
+    /* border-radius: 7px; */
+    display: none;
+    
+  
+  }
+  .tool-bar-block{
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tool-bar-options{
+    display:flex ;
+  justify-content: center;
+  align-items: center;
+    margin-top: 15px;
+    margin-right: 6px;
+  }
+  #tool-bar-edit img {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    margin-right: 35px;
+    display: block;
+  }
+  .tool-bar-delete img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .tool-bar-num{
+    color:#231f20;
+    
+    margin-left: 11px;
+   width: 30px;
+    padding-top: 15px;
+  }
+
+::ng-deep .card-body .table-responsive table td.mat-cell {
+  height: 48px;
+  line-height: 48px; /* Ensures vertical centering of content */
+}
+
+::ng-deep .mat-mdc-table .mat-mdc-header-cell {
+background: inherit;
+height: 48px !important;
+padding: 0;
+font-size: 14px;
+font-weight: 700 !important;
+font-family: 'popins',sans-serif;
+}
+.pay-request{
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  background-color: #00b2e2;
+}
+.approved {
+  color: green;
+}
+
+.rejected {
+  color: red;
+}
+
+.unknown {
+  color: black; /* or any other default color for unknown status */
+}
+/* loader */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #00b2e2;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Set CheckBox Color */
+::ng-deep .main-content .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+  border-color: #00b2e2 !important;
+  background-color: #00b2e2 !important;
+}
+::ng-deep .main-content .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background{
+  border-color: #00b2e2 !important;
+  background-color: #00b2e2 !important;
+}

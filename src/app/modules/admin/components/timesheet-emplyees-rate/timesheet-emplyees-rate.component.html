@@ -1,0 +1,182 @@
+<div (click)="handleExpansionClick($event)">
+  <!-- <div class="flex-container"> -->
+  <div
+    class="subHeader"
+    style="margin-left: 27px; margin-top: 10px; font-size: 13px"
+  >
+    <div class="shift">Shift</div>
+    <div class="labelemp">Pay Rate</div>
+
+    <div class="day-label" *ngFor="let day of this.finaldata; let i = index">
+      <div class="day-name">{{ day.day }}</div>
+      <br />
+      <div class="day-date">({{ day.date }})</div>
+    </div>
+    <div style="margin-left: 48px">Total Hours</div>
+    <div style="margin-left: 20px">Total Pay</div>
+
+    <div
+      class="subRow"
+      *ngFor="
+        let empShift of dataService.employeeInTimeSheet.employeeShifts;
+        let i = index
+      "
+      class="job-row flex-container"
+      id="widset"
+      style="margin-left: 0px"
+    >
+      <mat-form-field class="job-title" style="cursor: pointer">
+        <mat-label>Select Shift</mat-label>
+        <mat-select
+          [(ngModel)]="empShift.shiftId"
+          (selectionChange)="onShiftSelectChange(empShift)"
+        >
+          <mat-option
+            style="cursor: pointer"
+            *ngFor="let shift of shifts"
+            [value]="shift.shiftId"
+            [disabled]="isShiftSelected(shift.shiftId, empShift)"
+          >
+            {{ shift.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="rate">
+        <mat-form-field class="example-full-width">
+          <span matPrefix>{{ "€" }}</span>
+          <input
+            class="value"
+            matInput
+            type="number"
+            placeholder="Pay Rate"
+            [(ngModel)]="empShift.payRate"
+            (input)="calculateTotalHours()"
+          />
+        </mat-form-field>
+      </div>
+      <div class="hours">
+        <mat-form-field class="example-full-width" style="padding-left: 16px">
+          <input
+            class="value"
+            matInput
+            type="number"
+            placeholder="Enter hours"
+            (input)="calculateTotalHours()"
+            [(ngModel)]="empShift.mondayHours"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="padding-left: 28px">
+          <input
+            class="value"
+            matInput
+            type="number"
+            placeholder="Enter hours"
+            (input)="calculateTotalHours()"
+            [(ngModel)]="empShift.tuesdayHours"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="padding-left: 25px">
+          <input
+            class="value"
+            matInput
+            type="number"
+            placeholder="Enter hours"
+            (input)="calculateTotalHours()"
+            [(ngModel)]="empShift.wednesdayHours"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" style="padding-left: 42px">
+          <input
+            class="value"
+            matInput
+            type="number"
+            placeholder="Enter hours"
+            (input)="calculateTotalHours()"
+            [(ngModel)]="empShift.thursdayHours"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" style="padding-left: 27px">
+          <input
+            class="value"
+            matInput
+            type="number"
+            placeholder="Enter hours"
+            (input)="calculateTotalHours()"
+            [(ngModel)]="empShift.fridayHours"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" style="padding-left: 21px">
+          <input
+            class="value"
+            matInput
+            type="number"
+            placeholder="Enter hours"
+            (input)="calculateTotalHours()"
+            [(ngModel)]="empShift.saturdayHours"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" style="padding-left: 25px">
+          <input
+            class="value"
+            matInput
+            type="number"
+            placeholder="Enter hours"
+            (input)="calculateTotalHours()"
+            [(ngModel)]="empShift.sundayHours"
+          />
+        </mat-form-field>
+      </div>
+      <div class="hours">
+        <mat-form-field class="example-full-width">
+          <input
+            class="value"
+            matInput
+            placeholder="Total Hours"
+            [readonly]="true"
+            [(ngModel)]="empShift.totalHours"
+          />
+        </mat-form-field>
+      </div>
+      <div class="hours">
+        <mat-form-field class="example-full-width">
+          <span matPrefix>{{ "€" }}</span>
+          <input
+            class="value"
+            matInput
+            placeholder="Total Pay"
+            [readonly]="true"
+            [(ngModel)]="empShift.totalPay"
+          />
+        </mat-form-field>
+      </div>
+      <div class="delbtn">
+        <mat-icon
+          class="material-icons"
+          (click)="removeJob(i)"
+          style="color: red; cursor: pointer; margin-top: 21px"
+          >delete</mat-icon
+        >
+      </div>
+    </div>
+  </div>
+  <div class="create" style="height: 40px; margin-left: 37px; margin-top: 14px">
+    <button
+      type="button"
+      class="btn btn-sm"
+      style="background-color: rgb(0, 178, 226)"
+      (click)="addJob()"
+    >
+      Add Shift
+    </button>
+    <!-- <img
+  *ngIf="showCreateDiv"
+    src="/assets/img/faces/add_library_icon.png"
+    (click)="openForm()"
+  /> -->
+  </div>
+</div>
